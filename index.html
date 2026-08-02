@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Client Showcase</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
+    <header class="navbar">
+        <div class="logo">Aura<span>Dev</span></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#work">Our Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="btn-primary" id="cta-btn">Get Started</button>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>We Build <span>Digital Experiences</span> That Matter</h1>
+            <p>Premium web solutions tailored for your business growth. Fast, scalable, and beautifully designed.</p>
+            <div class="hero-buttons">
+                <a href="#work" class="btn-primary">View Portfolio</a>
+                <a href="#contact" class="btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="cards-container">
+            <div class="card">
+                <h3>Web Design</h3>
+                <p>Creating modern, interactive, and user-friendly interfaces tailored to your brand.</p>
+            </div>
+            <div class="card">
+                <h3>Development</h3>
+                <p>Clean, efficient, and robust code for seamless performance across all devices.</p>
+            </div>
+            <div class="card">
+                <h3>SEO & Growth</h3>
+                <p>Optimizing your presence online to reach target clients and convert leads.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Work With Us</h2>
+        <form class="contact-form" id="clientForm">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Tell us about your project" rows="5" required></textarea>
+            <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 AuraDev. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
