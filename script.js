@@ -11,16 +11,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Form submission handler
-const form = document.getElementById('clientForm');
-if (form) {
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        alert('Thank you! Your message has been submitted.');
-        form.reset();
-    });
-}
-
 // CTA Button Event Listener
 const ctaBtn = document.getElementById('cta-btn');
 if (ctaBtn) {
