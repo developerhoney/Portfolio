@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseGym - Member Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Nav */
+        .sidebar {
+            width: 240px;
+            background: #111827;
+            padding: 25px 20px;
+            border-right: 1px solid #1f2937;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 40px;
+        }
+
+        .menu-list {
+            list-style: none;
+        }
+
+        .menu-item {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #9ca3af;
+            transition: 0.2s;
+        }
+
+        .menu-item.active, .menu-item:hover {
+            background: #10b981;
+            color: #fff;
+        }
+
+        /* Main Dashboard Content */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        /* Stats Cards Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #1f2937;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #374151;
+        }
+
+        .stat-card h4 {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #10b981;
+        }
+
+        /* Dashboard Lower Section */
+        .dashboard-body {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .box {
+            background: #1f2937;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #374151;
+        }
+
+        .box h3 {
+            margin-bottom: 15px;
+            color: #f3f4f6;
+        }
+
+        /* BMI Form Styling */
+        .bmi-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bmi-inputs input {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #374151;
+            background: #111827;
+            color: white;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: #10b981;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .bmi-result {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #34d399;
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">⚡ PulseGym</div>
+        <ul class="menu-list">
+            <li class="menu-item active">📊 Dashboard</li>
+            <li class="menu-item">🏋️ Workouts</li>
+            <li class="menu-item">🥗 Nutrition</li>
+            <li class="menu-item">⚙️ Settings</li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="header">
+            <h2>Welcome Back, Honey! 👋</h2>
+            <span>Status: <strong style="color: #10b981;">Pro Member</strong></span>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>Calories Burned</h4>
+                <div class="value">2,450 kcal</div>
+            </div>
+            <div class="stat-card">
+                <h4>Workout Time</h4>
+                <div class="value">1h 45m</div>
+            </div>
+            <div class="stat-card">
+                <h4>Water Intake</h4>
+                <div class="value">3.2 L</div>
+            </div>
+            <div class="stat-card">
+                <h4>Heart Rate</h4>
+                <div class="value">118 bpm</div>
+            </div>
+        </div>
+
+        <div class="dashboard-body">
+            
+            <div class="box">
+                <h3>Calculate Your BMI</h3>
+                <div class="bmi-inputs">
+                    <input type="number" id="weight" placeholder="Weight (kg)">
+                    <input type="number" id="height" placeholder="Height (cm)">
+                    <button class="calc-btn" onclick="calculateBMI()">Calculate</button>
+                </div>
+                <div class="bmi-result" id="result"></div>
+            </div>
+
+            <div class="box">
+                <h3>Today's Workout Plan</h3>
+                <ul style="list-style: none; line-height: 2.2; color: #d1d5db;">
+                    <li>✅ Bench Press - 4 Sets x 12 Reps</li>
+                    <li>✅ Incline Dumbbell Press - 3 Sets</li>
+                    <li>⏳ Cable Crossovers - 3 Sets</li>
+                    <li>⏳ Tricep Dips - 4 Sets</li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function calculateBMI() {
+            let weight = document.getElementById('weight').value;
+            let height = document.getElementById('height').value / 100;
+
+            if(weight > 0 && height > 0) {
+                let bmi = (weight / (height * height)).toFixed(1);
+                document.getElementById('result').innerHTML = "Your BMI is: " + bmi;
+            } else {
+                document.getElementById('result').innerHTML = "Please enter valid values!";
+            }
+        }
+    </script>
+</body>
+</html>
