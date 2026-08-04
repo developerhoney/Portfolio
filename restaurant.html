@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savoria Cafe & Restaurant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #fff;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(0, 0, 0, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffb400;
+        }
+
+        .nav-btn {
+            background: #ffb400;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #ffb400;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: #ffb400;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: #1e1e1e;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-info {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .menu-title {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #ffb400;
+        }
+
+        .menu-desc {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Reservation Form */
+        .booking-section {
+            background: #1e1e1e;
+            padding: 50px 20px;
+            text-align: center;
+            margin: 40px 8%;
+            border-radius: 15px;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        .booking-form input, .booking-form button {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+
+        .booking-form input {
+            flex: 1 1 200px;
+            background: #2a2a2a;
+            color: white;
+        }
+
+        .booking-form button {
+            background: #ffb400;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Savoria</div>
+        <a href="#book" class="nav-btn">Book Table</a>
+    </header>
+
+    <section class="hero">
+        <h1>Delicious Food & Fine Dining</h1>
+        <p>Experience the best gourmet dishes crafted by top chefs.</p>
+    </section>
+
+    <section class="menu-section">
+        <h2 class="section-title">Chef's Specials</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80" alt="Special Salad">
+                <div class="menu-info">
+                    <div class="menu-title">
+                        <span>Gourmet Salad</span>
+                        <span class="price">₹349</span>
+                    </div>
+                    <p class="menu-desc">Fresh veggies tossed in olive oil with exotic herbs.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&q=80" alt="Pizza">
+                <div class="menu-info">
+                    <div class="menu-title">
+                        <span>Woodfire Pizza</span>
+                        <span class="price">₹599</span>
+                    </div>
+                    <p class="menu-desc">Loaded with mozzarella cheese and fresh basil leaves.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&q=80" alt="Drink">
+                <div class="menu-info">
+                    <div class="menu-title">
+                        <span>Berry Cooler</span>
+                        <span class="price">₹199</span>
+                    </div>
+                    <p class="menu-desc">Refreshing mocktail with fresh berries and mint.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-section" id="book">
+        <h2>Book A Table</h2>
+        <form class="booking-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="date" required>
+            <input type="time" required>
+            <button type="submit">Confirm Reservation</button>
+        </form>
+    </section>
+
+</body>
+</html>
