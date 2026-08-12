@@ -1,226 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrendStore - E-Commerce Demo</title>
-    <style>
-        /* CSS Reset & Basic Setup */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA — Curated Minimal Goods by DevHoney</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        body {
-            background-color: #f8fafc;
-            color: #0f172a;
-        }
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; cursor: none; }
+    
+    :root {
+      --bg: #111111;
+      --card-bg: #1a1a1a;
+      --accent: #c5a880;
+      --accent-glow: rgba(197, 168, 128, 0.15);
+      --text: #f4f4f0;
+      --muted: #888888;
+      --border: #2a2a2a;
+    }
 
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #ffffff;
-            padding: 15px 5%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2563eb;
-        }
+    .cursor-dot {
+      width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
+    }
+    .cursor-glow {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 70%);
+      position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
+    }
 
-        .search-bar input {
-            padding: 8px 15px;
-            width: 300px;
-            border: 1px solid #cbd5e1;
-            border-radius: 20px;
-            outline: none;
-        }
+    header {
+      display: flex; justify-content: space-between; align-items: center; padding: 22px 6%;
+      background: rgba(17,17,17,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border);
+    }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 600; }
+    .logo span { color: var(--accent); }
 
-        .cart-icon {
-            font-weight: 600;
-            cursor: pointer;
-            background: #e0e7ff;
-            color: #4338ca;
-            padding: 8px 15px;
-            border-radius: 20px;
-        }
+    .cart-pill {
+      background: var(--accent); color: #000; border: none; padding: 8px 20px;
+      border-radius: 30px; font-weight: 700; transition: transform 0.2s;
+    }
 
-        /* Hero Banner */
-        .hero {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
+    .main-wrap { max-width: 1250px; margin: 0 auto; padding: 50px 6%; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
+    .card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px;
+      padding: 22px; display: flex; flex-direction: column; justify-content: space-between; transition: border-color 0.3s;
+    }
+    .card:hover { border-color: var(--accent); }
 
-        /* Layout Container */
-        .main-container {
-            display: flex;
-            gap: 30px;
-            padding: 40px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .sz-btn {
+      background: var(--bg); border: 1px solid var(--border); color: var(--muted);
+      padding: 4px 10px; margin-right: 4px; font-size: 0.75rem; border-radius: 3px; transition: all 0.2s;
+    }
+    .sz-btn.active, .sz-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-        /* Sidebar Filter */
-        .filters {
-            width: 250px;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            height: fit-content;
-        }
+    .add-btn {
+      background: transparent; border: 1px solid var(--text); color: var(--text);
+      padding: 12px; width: 100%; margin-top: 20px; font-weight: 600; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.25s;
+    }
+    .add-btn:hover { background: var(--accent); border-color: var(--accent); color: #000; }
 
-        .filters h3 {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .filter-group {
-            margin-bottom: 15px;
-        }
-
-        .filter-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-            color: #475569;
-        }
-
-        /* Product Grid */
-        .products-grid {
-            flex: 1;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .product-details {
-            padding: 15px;
-        }
-
-        .product-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .product-price {
-            color: #2563eb;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-        }
-
-        .add-to-cart-btn {
-            width: 100%;
-            background-color: #0f172a;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .add-to-cart-btn:hover {
-            background-color: #2563eb;
-        }
-    </style>
+    .drawer {
+      position: fixed; top:0; right: -420px; width: 380px; height: 100vh; background: #161616;
+      border-left: 1px solid var(--border); padding: 35px; display: flex; flex-direction: column;
+      z-index: 1000; transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .drawer.open { right: 0; }
+    .drawer-items { flex: 1; overflow-y: auto; margin: 20px 0; border-top: 1px solid var(--border); }
+    .drawer-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">TrendStore</div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search products...">
+  <div class="cursor-dot" id="dot"></div>
+  <div class="cursor-glow" id="glow"></div>
+
+  <header>
+    <div class="logo">AURA<span>.</span></div>
+    <button class="cart-pill" onclick="toggleCart(true)">Bag (<span id="cnt">0</span>)</button>
+  </header>
+
+  <div class="main-wrap">
+    <h2 style="font-family:'Playfair Display'; margin-bottom: 30px; font-size:2rem;">Curated Essentials</h2>
+
+    <div class="grid">
+      <div class="card spotlight-card">
+        <div>
+          <span style="font-size:0.75rem; color:var(--accent); font-weight:700; letter-spacing:1px;">APPAREL</span>
+          <h3 style="font-family:'Playfair Display'; margin: 8px 0; font-size: 1.3rem;">Heavyweight Cotton Tee</h3>
+          <p style="color:var(--accent); font-weight:600; margin-bottom: 15px;">₹1,299</p>
+          <div>
+            <span style="font-size:0.8rem; color:var(--muted);">Select Size:</span><br>
+            <button class="sz-btn active" onclick="pickSz(this)">S</button>
+            <button class="sz-btn" onclick="pickSz(this)">M</button>
+            <button class="sz-btn" onclick="pickSz(this)">L</button>
+          </div>
         </div>
-        <div class="cart-icon">🛒 Cart (0)</div>
-    </header>
+        <button class="add-btn" onclick="addToBag('Heavyweight Cotton Tee', 1299)">Add To Bag</button>
+      </div>
 
-    <section class="hero">
-        <h1>Summer Fashion Sale</h1>
-        <p>Get up to 50% off on premium apparel</p>
-    </section>
+      <div class="card spotlight-card">
+        <div>
+          <span style="font-size:0.75rem; color:var(--accent); font-weight:700; letter-spacing:1px;">FOOTWEAR</span>
+          <h3 style="font-family:'Playfair Display'; margin: 8px 0; font-size: 1.3rem;">Minimalist Runner</h3>
+          <p style="color:var(--accent); font-weight:600; margin-bottom: 15px;">₹3,499</p>
+          <div>
+            <span style="font-size:0.8rem; color:var(--muted);">Select Size:</span><br>
+            <button class="sz-btn active" onclick="pickSz(this)">8</button>
+            <button class="sz-btn" onclick="pickSz(this)">9</button>
+            <button class="sz-btn" onclick="pickSz(this)">10</button>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addToBag('Minimalist Runner', 3499)">Add To Bag</button>
+      </div>
 
-    <div class="main-container">
-        
-        <aside class="filters">
-            <h3>Categories</h3>
-            <div class="filter-group">
-                <label><input type="checkbox" checked> All Products</label>
-                <label><input type="checkbox"> T-Shirts & Tops</label>
-                <label><input type="checkbox"> Shoes & Sneakers</label>
-                <label><input type="checkbox"> Accessories</label>
-            </div>
-        </aside>
-
-        <main class="products-grid">
-            
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&q=80" alt="T-Shirt">
-                <div class="product-details">
-                    <div class="product-title">Classic White Tee</div>
-                    <div class="product-price">₹799</div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80" alt="Sneakers">
-                <div class="product-details">
-                    <div class="product-title">Red Running Shoes</div>
-                    <div class="product-price">₹2,499</div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80" alt="Watch">
-                <div class="product-details">
-                    <div class="product-title">Minimalist Watch</div>
-                    <div class="product-price">₹1,899</div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
-
-        </main>
+      <div class="card spotlight-card">
+        <div>
+          <span style="font-size:0.75rem; color:var(--accent); font-weight:700; letter-spacing:1px;">ACCESSORIES</span>
+          <h3 style="font-family:'Playfair Display'; margin: 8px 0; font-size: 1.3rem;">Analog Timepiece</h3>
+          <p style="color:var(--accent); font-weight:600; margin-bottom: 15px;">₹5,999</p>
+          <div>
+            <span style="font-size:0.8rem; color:var(--muted);">Strap Option:</span><br>
+            <button class="sz-btn active" onclick="pickSz(this)">Leather</button>
+            <button class="sz-btn" onclick="pickSz(this)">Steel</button>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addToBag('Analog Timepiece', 5999)">Add To Bag</button>
+      </div>
     </div>
+  </div>
 
+  <div class="drawer" id="drawer">
+    <h3 style="font-family:'Playfair Display'; font-size: 1.5rem;">Your Shopping Bag</h3>
+    <div class="drawer-items" id="bagList">
+      <p style="color:var(--muted); margin-top:20px; font-size:0.9rem;">Your bag is empty.</p>
+    </div>
+    <div>
+      <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:15px;">
+        <span>Bag Total:</span>
+        <span style="color:var(--accent);" id="bagTotal">₹0</span>
+      </div>
+      <button class="add-btn" style="background:var(--accent); border-color:var(--accent); color:#000;" onclick="alert('Proceeding to Secure Checkout!')">Checkout Order</button>
+      <button class="add-btn" style="border:none;" onclick="toggleCart(false)">Close Bag</button>
+    </div>
+  </div>
+
+  <script>
+    const dot = document.getElementById('dot'); const glow = document.getElementById('glow');
+    window.addEventListener('mousemove', (e) => {
+      dot.style.left = `${e.clientX}px`; dot.style.top = `${e.clientY}px`;
+      glow.style.left = `${e.clientX}px`; glow.style.top = `${e.clientY}px`;
+    });
+
+    document.querySelectorAll('.spotlight-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left; const y = e.clientY - r.top;
+        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(197,168,128,0.08) 0%, rgba(26,26,26,1) 70%)`;
+      });
+      card.addEventListener('mouseleave', () => card.style.background = 'var(--card-bg)');
+    });
+
+    function pickSz(btn) {
+      btn.parentElement.querySelectorAll('.sz-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    let bag = [];
+    function toggleCart(show) { document.getElementById('drawer').classList.toggle('open', show); }
+
+    function addToBag(title, price) {
+      bag.push({ title, price });
+      renderBag();
+      toggleCart(true);
+    }
+
+    function removeItem(idx) {
+      bag.splice(idx, 1);
+      renderBag();
+    }
+
+    function renderBag() {
+      document.getElementById('cnt').textContent = bag.length;
+      const list = document.getElementById('bagList');
+      const tot = document.getElementById('bagTotal');
+
+      if(bag.length === 0) {
+        list.innerHTML = '<p style="color:var(--muted); margin-top:20px; font-size:0.9rem;">Your bag is empty.</p>';
+        tot.textContent = '₹0'; return;
+      }
+
+      let sum = 0;
+      list.innerHTML = bag.map((item, i) => {
+        sum += item.price;
+        return `
+          <div class="drawer-item">
+            <div><strong>${item.title}</strong><br><span style="color:var(--accent);">₹${item.price}</span></div>
+            <span style="color:#ef4444; font-size:0.8rem;" onclick="removeItem(${i})">Remove</span>
+          </div>`;
+      }).join('');
+      tot.textContent = `₹${sum}`;
+    }
+  </script>
 </body>
 </html>
