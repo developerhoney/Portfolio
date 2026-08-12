@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HoneyDev - Modern Portfolio</title>
+    <title>DevHoney - Premium Web Studio</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="navbar">
-        <div class="logo">Honey<span>Dev</span></div>
+        <div class="logo">Dev<span>Honey</span></div>
         <nav>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -19,13 +22,14 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <button class="btn-primary" id="cta-btn">Get Started</button>
+        <a href="#contact" class="btn-primary" id="cta-btn">Get Started</a>
     </header>
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>We Build <span>Digital Experiences</span> That Matter</h1>
-            <p>Premium web solutions tailored for your business growth. Fast, scalable, and beautifully designed.</p>
+            <span class="hero-badge">✦ CRAFTING DIGITAL EXCELLENCE</span>
+            <h1 class="bounce-element">We Build <span>Digital Experiences</span> That Matter</h1>
+            <p>High-converting, ultra-fast, and elegantly engineered web solutions tailored for scaling your business.</p>
             <div class="hero-buttons">
                 <a href="#work" class="btn-primary">View Portfolio</a>
                 <a href="#contact" class="btn-secondary">Contact Us</a>
@@ -34,73 +38,116 @@
     </section>
 
     <section id="services" class="services">
-        <h2>Our Services</h2>
+        <span class="section-badge">WHAT WE DO</span>
+        <h2>Our Core Expertise</h2>
         <div class="cards-container">
             <div class="card">
-                <h3>Web Design</h3>
-                <p>Creating modern, interactive, and user-friendly interfaces tailored to your brand.</p>
+                <div class="card-icon">⚡</div>
+                <h3>Web Development</h3>
+                <p>Custom tailored websites built with extreme speed, enterprise security, and flawless responsive design.</p>
             </div>
             <div class="card">
-                <h3>Development</h3>
-                <p>Clean, efficient, and robust code for seamless performance across all devices.</p>
+                <div class="card-icon">🎨</div>
+                <h3>UI/UX Design</h3>
+                <p>Modern, pixel-perfect interfaces designed to delight users and drive maximum conversion rates.</p>
             </div>
             <div class="card">
-                <h3>SEO & Growth</h3>
-                <p>Optimizing your presence online to reach target clients and convert leads.</p>
+                <div class="card-icon">🛒</div>
+                <h3>E-Commerce</h3>
+                <p>High-converting online boutique stores engineered for intuitive, seamless shopping experiences.</p>
             </div>
         </div>
     </section>
+
     <section id="work" class="work">
-    <h2 class="section-title">Our Work</h2>
-    <p class="section-subtitle">Check out some of our latest projects</p>
+        <span class="section-badge">✦ SELECTED WORKS</span>
+        <h2 class="section-title">Featured Demos & Projects</h2>
+        <p class="section-subtitle">Explore our hand-crafted, high-performance web applications built for real impact.</p>
+        
+        <div class="portfolio-grid">
+            
+            <div class="portfolio-card">
+                <div class="card-header">
+                    <span class="project-num">01</span>
+                    <span class="project-category">HOSPITALITY</span>
+                </div>
+                <h3>Gourmet Dining Experience</h3>
+                <p>Modern restaurant portal featuring dynamic menu filtering, interactive reservation system, and real-time order counter.</p>
+                
+                <div class="tech-tags">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                </div>
+                
+                <div class="card-footer">
+                    <a href="restaurant.html" target="_blank" class="portfolio-btn">
+                        <span>Explore Live Demo</span>
+                        <span class="arrow">↗</span>
+                    </a>
+                </div>
+            </div>
 
-    <div class="portfolio-grid">
-        <div class="portfolio-card">
-            <div class="portfolio-img">
-                <img src="https://images.unsplash.com/photo-1557821552-17105176677c?w=600&q=80" alt="Project 1">
-            </div>
-            <div class="portfolio-info">
-                <h3>E-Commerce Platform</h3>
-                <p>Modern online shop layout with clean UI and responsive design.</p>
-                <a href="ecommerce.html"_blank" class="portfolio-btn">View Demo ↗</a>
-            </div>
-        </div>
+            <div class="portfolio-card">
+                <div class="card-header">
+                    <span class="project-num">02</span>
+                    <span class="project-category">CORPORATE</span>
+                </div>
+                <h3>Agency Landing Suite</h3>
+                <p>Ultra-clean corporate presentation page optimized for high conversion rates, client trust, and effortless lead capture.</p>
+                
+                <div class="tech-tags">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>UI/UX</span>
+                </div>
 
-        <div class="portfolio-card">
-            <div class="portfolio-img">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Project 2">
+                <div class="card-footer">
+                    <a href="restaurant.html" target="_blank" class="portfolio-btn">
+                        <span>Explore Live Demo</span>
+                        <span class="arrow">↗</span>
+                    </a>
+                </div>
             </div>
-            <div class="portfolio-info">
-                <h3>Agency Landing Page</h3>
-                <p>Clean corporate presentation tailored for fast client conversion.</p>
-                <a href="restaurant.html" target="_blank" class="portfolio-btn">View Demo ↗</a>
-            </div>
-        </div>
 
-        <div class="portfolio-card">
-            <div class="portfolio-img">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Project 3">
+            <div class="portfolio-card">
+                <div class="card-header">
+                    <span class="project-num">03</span>
+                    <span class="project-category">SAAS & ANALYTICS</span>
+                </div>
+                <h3>Interactive Web App</h3>
+                <p>Real-time analytics dashboard with dynamic day selectors, live calculators, and smooth data visualization widgets.</p>
+                
+                <div class="tech-tags">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>Vanilla JS</span>
+                </div>
+
+                <div class="card-footer">
+                    <a href="gym.html" target="_blank" class="portfolio-btn">
+                        <span>Explore Live Demo</span>
+                        <span class="arrow">↗</span>
+                    </a>
+                </div>
             </div>
-            <div class="portfolio-info">
-                <h3>Web Application</h3>
-                <p>Interactive dashboard built for real-time analytics tracking.</p>
-                <a href="gym.html" target="_blank" class="portfolio-btn">View Demo ↗</a>
-            </div>
+
         </div>
-    </div>
-</section>
+    </section>
+
     <section id="contact" class="contact">
-        <h2>Work With Us</h2>
+        <span class="section-badge">GET IN TOUCH</span>
+        <h2>Let's Build Something Custom</h2>
         <form class="contact-form" action="https://formspree.io/f/xykrqvyz" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Tell us about your project" rows="5" required></textarea>
+            <input type="text" name="name" placeholder="Your Full Name" required>
+            <input type="email" name="email" placeholder="Your Email Address" required>
+            <textarea name="message" placeholder="Brief details about your project..." rows="5" required></textarea>
             <button type="submit" class="btn-primary">Send Message</button>
         </form>
     </section>
 
     <footer>
-        <p>&copy; 2026 HoneyDev. All rights reserved.</p>
+        <p>&copy; 2026 DevHoney. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
