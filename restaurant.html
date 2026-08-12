@@ -1,225 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savoria Cafe & Restaurant</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savoria — Culinary Experience by DevHoney</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        body {
-            background-color: #121212;
-            color: #fff;
-        }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+    
+    :root {
+      --bg: #0f0e0d;
+      --card-bg: #181614;
+      --gold: #d4af37;
+      --gold-glow: rgba(212, 175, 55, 0.15);
+      --text: #f7f4ef;
+      --muted: #a39c94;
+      --border: #282420;
+    }
 
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(0, 0, 0, 0.8);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ffb400;
-        }
+    /* Custom Cursor */
+    .cursor-dot {
+      width: 8px; height: 8px; background: var(--gold); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
+    }
+    .cursor-glow {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, var(--gold-glow) 0%, rgba(0,0,0,0) 70%);
+      position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
+    }
 
-        .nav-btn {
-            background: #ffb400;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: 600;
-        }
+    /* Navbar */
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 8%; background: rgba(15, 14, 13, 0.9); backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border);
+    }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; }
+    .brand span { color: var(--gold); }
+    .btn-gold {
+      background: transparent; color: var(--gold); border: 1px solid var(--gold);
+      padding: 10px 24px; border-radius: 4px; font-weight: 500; transition: all 0.3s ease;
+    }
+    .btn-gold:hover { background: var(--gold); color: var(--bg); }
 
-        /* Hero Section */
-        .hero {
-            height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80') center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
+    /* Hero */
+    .hero { text-align: center; padding: 90px 8% 50px; max-width: 900px; margin: 0 auto; }
+    .hero span { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; font-weight: 600; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); margin: 15px 0; }
+    .hero p { color: var(--muted); font-weight: 300; font-size: 1.1rem; }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            color: #ffb400;
-            margin-bottom: 10px;
-        }
+    /* Menu Tabs */
+    .tabs { display: flex; justify-content: center; gap: 12px; margin: 40px 0; flex-wrap: wrap; }
+    .tab-btn {
+      background: var(--card-bg); border: 1px solid var(--border); color: var(--muted);
+      padding: 10px 22px; border-radius: 30px; font-size: 0.9rem; transition: all 0.3s;
+    }
+    .tab-btn.active, .tab-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: #ddd;
-            margin-bottom: 20px;
-        }
+    /* Grid & Cards */
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px; padding: 0 8% 100px; max-width: 1250px; margin: 0 auto;
+    }
+    .menu-card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 24px; position: relative; overflow: hidden; transition: border-color 0.3s;
+    }
+    .menu-card:hover { border-color: var(--gold); }
+    .menu-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+    .menu-header h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; }
+    .price { color: var(--gold); font-weight: 600; }
+    .desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5; }
 
-        /* Menu Section */
-        .menu-section {
-            padding: 60px 8%;
-            text-align: center;
-        }
+    /* Interactive Order Bar */
+    .order-controls { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 16px; }
+    .qty-btn {
+      background: var(--border); color: #fff; border: none; width: 32px; height: 32px;
+      border-radius: 4px; font-weight: bold; transition: background 0.2s;
+    }
+    .qty-btn:hover { background: var(--gold); color: var(--bg); }
 
-        .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 40px;
-            color: #ffb400;
-        }
+    /* Floating Cart Bar */
+    .cart-bar {
+      position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+      background: var(--gold); color: var(--bg); padding: 16px 32px; border-radius: 50px;
+      display: flex; gap: 30px; align-items: center; font-weight: 600;
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 200;
+    }
+    .cart-bar.visible { transform: translateX(-50%) translateY(0); }
 
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .menu-card {
-            background: #1e1e1e;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-
-        .menu-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .menu-info {
-            padding: 20px;
-            text-align: left;
-        }
-
-        .menu-title {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .price {
-            color: #ffb400;
-        }
-
-        .menu-desc {
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-
-        /* Reservation Form */
-        .booking-section {
-            background: #1e1e1e;
-            padding: 50px 20px;
-            text-align: center;
-            margin: 40px 8%;
-            border-radius: 15px;
-        }
-
-        .booking-form {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            max-width: 600px;
-            margin: 20px auto 0;
-        }
-
-        .booking-form input, .booking-form button {
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            outline: none;
-        }
-
-        .booking-form input {
-            flex: 1 1 200px;
-            background: #2a2a2a;
-            color: white;
-        }
-
-        .booking-form button {
-            background: #ffb400;
-            color: #000;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-        }
-    </style>
+    /* Modal */
+    .modal {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+      display: none; justify-content: center; align-items: center; z-index: 1000;
+    }
+    .modal.active { display: flex; }
+    .modal-box {
+      background: var(--card-bg); border: 1px solid var(--gold); padding: 40px;
+      border-radius: 12px; width: 90%; max-width: 480px; text-align: center;
+    }
+    .modal-box input, .modal-box select {
+      width: 100%; padding: 14px; background: var(--bg); border: 1px solid var(--border);
+      color: #fff; border-radius: 6px; margin-bottom: 12px; outline: none;
+    }
+  </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">Savoria</div>
-        <a href="#book" class="nav-btn">Book Table</a>
-    </header>
+  <div class="cursor-dot" id="dot"></div>
+  <div class="cursor-glow" id="glow"></div>
 
-    <section class="hero">
-        <h1>Delicious Food & Fine Dining</h1>
-        <p>Experience the best gourmet dishes crafted by top chefs.</p>
-    </section>
+  <header class="navbar">
+    <div class="brand">Savoria<span>.</span></div>
+    <button class="btn-gold" onclick="openModal(true)">Reserve Table</button>
+  </header>
 
-    <section class="menu-section">
-        <h2 class="section-title">Chef's Specials</h2>
-        <div class="menu-grid">
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80" alt="Special Salad">
-                <div class="menu-info">
-                    <div class="menu-title">
-                        <span>Gourmet Salad</span>
-                        <span class="price">₹349</span>
-                    </div>
-                    <p class="menu-desc">Fresh veggies tossed in olive oil with exotic herbs.</p>
-                </div>
-            </div>
+  <section class="hero">
+    <span>Artisanal Gastronomy • DevHoney Showcase</span>
+    <h1>Where Flavors Tell A Story</h1>
+    <p>Hand-selected organic ingredients crafted into timeless culinary masterpieces.</p>
 
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&q=80" alt="Pizza">
-                <div class="menu-info">
-                    <div class="menu-title">
-                        <span>Woodfire Pizza</span>
-                        <span class="price">₹599</span>
-                    </div>
-                    <p class="menu-desc">Loaded with mozzarella cheese and fresh basil leaves.</p>
-                </div>
-            </div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="filterMenu('all', this)">All Specials</button>
+      <button class="tab-btn" onclick="filterMenu('mains', this)">Main Courses</button>
+      <button class="tab-btn" onclick="filterMenu('drinks', this)">Craft Beverages</button>
+      <button class="tab-btn" onclick="filterMenu('desserts', this)">Artisanal Desserts</button>
+    </div>
+  </section>
 
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&q=80" alt="Drink">
-                <div class="menu-info">
-                    <div class="menu-title">
-                        <span>Berry Cooler</span>
-                        <span class="price">₹199</span>
-                    </div>
-                    <p class="menu-desc">Refreshing mocktail with fresh berries and mint.</p>
-                </div>
-            </div>
+  <main class="menu-grid">
+    <div class="menu-card spotlight-card" data-cat="mains">
+      <div class="menu-header"><h3>Truffle Ribeye Steak</h3><span class="price">₹1,499</span></div>
+      <p class="desc">Prime black angus beef infused with wild rosemary butter and black truffle glaze.</p>
+      <div class="order-controls">
+        <span style="font-size: 0.85rem; color: var(--muted);">Add To Table Order</span>
+        <div>
+          <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+          <span style="margin: 0 10px; font-weight: 600;" class="qty">0</span>
+          <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section class="booking-section" id="book">
-        <h2>Book A Table</h2>
-        <form class="booking-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="date" required>
-            <input type="time" required>
-            <button type="submit">Confirm Reservation</button>
-        </form>
-    </section>
+    <div class="menu-card spotlight-card" data-cat="mains">
+      <div class="menu-header"><h3>Artisanal Woodfire Pizza</h3><span class="price">₹699</span></div>
+      <p class="desc">Hand-stretched fermented dough, buffalo mozzarella, San Marzano tomatoes, fresh basil.</p>
+      <div class="order-controls">
+        <span style="font-size: 0.85rem; color: var(--muted);">Add To Table Order</span>
+        <div>
+          <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+          <span style="margin: 0 10px; font-weight: 600;" class="qty">0</span>
+          <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
 
+    <div class="menu-card spotlight-card" data-cat="drinks">
+      <div class="menu-header"><h3>Wild Berry Botanica</h3><span class="price">₹299</span></div>
+      <p class="desc">Crushed organic berries, elderflower tonic, slapped mint, and sparkling artisanal water.</p>
+      <div class="order-controls">
+        <span style="font-size: 0.85rem; color: var(--muted);">Add To Table Order</span>
+        <div>
+          <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+          <span style="margin: 0 10px; font-weight: 600;" class="qty">0</span>
+          <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card spotlight-card" data-cat="desserts">
+      <div class="menu-header"><h3>Dark Chocolate Soufflé</h3><span class="price">₹449</span></div>
+      <p class="desc">70% Single-origin Belgian chocolate lava center paired with Madagascar vanilla gelato.</p>
+      <div class="order-controls">
+        <span style="font-size: 0.85rem; color: var(--muted);">Add To Table Order</span>
+        <div>
+          <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+          <span style="margin: 0 10px; font-weight: 600;" class="qty">0</span>
+          <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="cart-bar" id="cartBar">
+    <span><span id="itemCount">0</span> Items Selected</span>
+    <span>Total: ₹<span id="cartTotal">0</span></span>
+    <button class="btn-gold" style="background:#0f0e0d; color:#d4af37;" onclick="openModal(true)">Checkout Order &rarr;</button>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <h2 style="font-family:'Playfair Display'; margin-bottom: 10px;">Reserve Table Experience</h2>
+      <p style="color:var(--muted); font-size:0.85rem; margin-bottom: 20px;">Provide details to confirm your dining table.</p>
+      <input type="text" id="resName" placeholder="Full Name">
+      <input type="date" id="resDate">
+      <select id="resTime">
+        <option value="">Select Time Slot</option>
+        <option value="7pm">07:00 PM - Dinner</option>
+        <option value="9pm">09:00 PM - Late Dining</option>
+      </select>
+      <button class="btn-gold" style="width:100%; background:var(--gold); color:#0f0e0d; font-weight:700;" onclick="submitRes()">Confirm Reservation</button>
+      <button style="background:none; border:none; color:var(--muted); margin-top:15px;" onclick="openModal(false)">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    const dot = document.getElementById('dot');
+    const glow = document.getElementById('glow');
+    window.addEventListener('mousemove', (e) => {
+      dot.style.left = `${e.clientX}px`; dot.style.top = `${e.clientY}px`;
+      glow.style.left = `${e.clientX}px`; glow.style.top = `${e.clientY}px`;
+    });
+
+    document.querySelectorAll('.spotlight-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left; const y = e.clientY - r.top;
+        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(212,175,55,0.08) 0%, rgba(24,22,20,1) 70%)`;
+      });
+      card.addEventListener('mouseleave', () => card.style.background = 'var(--card-bg)');
+    });
+
+    function filterMenu(cat, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.menu-card').forEach(c => {
+        c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'block' : 'none';
+      });
+    }
+
+    let items = 0; let total = 0;
+    const prices = [1499, 699, 299, 449];
+    
+    function changeQty(btn, delta) {
+      const card = btn.closest('.menu-card');
+      const qtySpan = card.querySelector('.qty');
+      let current = parseInt(qtySpan.textContent);
+      if(current + delta < 0) return;
+      
+      current += delta;
+      qtySpan.textContent = current;
+
+      items += delta;
+      const cardIdx = Array.from(document.querySelectorAll('.menu-card')).indexOf(card);
+      total += delta * prices[cardIdx];
+
+      document.getElementById('itemCount').textContent = items;
+      document.getElementById('cartTotal').textContent = total;
+
+      const bar = document.getElementById('cartBar');
+      if(items > 0) bar.classList.add('visible');
+      else bar.classList.remove('visible');
+    }
+
+    function openModal(show) { document.getElementById('modal').classList.toggle('active', show); }
+    function submitRes() {
+      const name = document.getElementById('resName').value;
+      if(name) { alert(`Table reserved for ${name}! We look forward to serving you.`); openModal(false); }
+      else alert('Please enter your name.');
+    }
+  </script>
 </body>
 </html>
