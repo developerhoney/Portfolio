@@ -59,7 +59,7 @@ body {
     letter-spacing: -0.5px;
 }
 
-.logo-accent, .logo .dot {
+.logo-accent {
     color: var(--accent);
 }
 
