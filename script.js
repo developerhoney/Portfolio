@@ -1,30 +1,63 @@
-// Custom Cursor Spotlight Tracking
-const cursorDot = document.getElementById('cursorDot');
-const cursorGlow = document.getElementById('cursorGlow');
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Cursor Glow Follow Effect
+    const cursorGlow = document.querySelector('.cursor-glow');
+    if (cursorGlow) {
+        window.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = `${e.clientX}px`;
+            cursorGlow.style.top = `${e.clientY}px`;
+        });
+    }
 
-window.addEventListener('mousemove', (e) => {
-  const { clientX, clientY } = e;
+    // 2. Smooth Scrolling for Navigation Links
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId && targetId !== '#') {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
 
-  cursorDot.style.left = `${clientX}px`;
-  cursorDot.style.top = `${clientY}px`;
+    // 3. Formspree AJAX Contact Form Handling
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
 
-  cursorGlow.style.left = `${clientX}px`;
-  cursorGlow.style.top = `${clientY}px`;
-});
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
 
-// Radial Glow Effect on Individual Cards
-const cards = document.querySelectorAll('.spotlight-card');
+            try {
+                const response = await fetch('https://formspree.io/f/xykrqvyz', {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
 
-cards.forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(212, 175, 55, 0.08) 0%, rgba(18, 20, 28, 1) 70%)`;
-  });
-
-  card.addEventListener('mouseleave', () => {
-    card.style.background = 'var(--bg-card)';
-  });
+                if (response.ok) {
+                    alert('Thank you! Your message has been sent successfully.');
+                    contactForm.reset();
+                } else {
+                    alert('Oops! Something went wrong. Please check your form endpoint.');
+                }
+            } catch (error) {
+                alert('Error submitting form. Please check your network connection.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+    }
 });
