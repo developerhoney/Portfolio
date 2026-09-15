@@ -3,153 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevHoney - Premium Web Studio</title>
-    
-    <link rel="icon" type="image/png" href="favicon.png">
-
-    <link rel="stylesheet" href="style.css">
+    <title>DevHoney Studio | Full-Stack & Bot Developer</title>
+    <link rel="stylesheet" href="style_2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Mouse Cursor Glow Effect -->
+    <div class="cursor-glow"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Navigation Bar -->
     <header class="navbar">
-        <div class="logo">Dev<span>Honey</span></div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#work">Our Work</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <a href="#contact" class="btn-primary" id="cta-btn">Get Started</a>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-accent">DEV</span>HONEY<span class="dot">.</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#projects">Projects</a>
+                <a href="#creator">YouTube</a>
+                <a href="#contact" class="nav-btn">Get In Touch</a>
+            </nav>
+        </div>
     </header>
 
-    <section id="home" class="hero">
+    <!-- Hero Section -->
+    <section class="hero-section" id="about">
         <div class="hero-content">
-            <span class="hero-badge">✦ CRAFTING DIGITAL EXCELLENCE</span>
-            <h1 class="bounce-element">We Build <span>Digital Experiences</span> That Matter</h1>
-            <p>High-converting, ultra-fast, and elegantly engineered web solutions tailored for scaling your business.</p>
-            <div class="hero-buttons">
-                <a href="#work" class="btn-primary">View Portfolio</a>
-                <a href="#contact" class="btn-secondary">Contact Us</a>
+            <div class="badge">
+                <i class="fa-solid fa-code"></i> Full-Stack & Discord Bot Developer
+            </div>
+            <h1>Building Scalable Web Apps & <span class="highlight-text">Custom Automation</span></h1>
+            <p class="hero-desc">
+                Passionate developer trained in Computer Science (Harvard CS50x) & ADCA. Creator of custom Discord bots, AI web auditors, and high-performance interactive web applications.
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> View Projects</a>
+                <a href="https://youtube.com/@spyriftgaming?si=5o8mDlnO0pyIjBxn" target="_blank" class="btn btn-secondary">
+                    <i class="fa-brands fa-youtube"></i> YouTube Channel
+                </a>
+                <a href="https://discord.gg/HgnNNXnQ6s" target="_blank" class="btn btn-discord">
+                    <i class="fa-brands fa-discord"></i> Join Community
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="services" class="services">
-        <span class="section-badge">WHAT WE DO</span>
-        <h2>Our Core Expertise</h2>
-        <div class="cards-container">
-            <div class="card">
-                <div class="card-icon">⚡</div>
-                <h3>Web Development</h3>
-                <p>Custom tailored websites built with extreme speed, enterprise security, and flawless responsive design.</p>
+    <!-- Education & Certifications Section -->
+    <section class="section" id="education">
+        <div class="section-title">
+            <span class="sub-heading">BACKGROUND & QUALIFICATIONS</span>
+            <h2>Education & Certifications</h2>
+        </div>
+        <div class="cards-grid grid-2">
+            <div class="spotlight-card">
+                <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h3>Harvard CS50 & CS50x</h3>
+                <p class="card-sub">Computer Science Certification</p>
+                <p>In-depth foundation in Computer Science, algorithms, data structures, C, Python, SQL, web development (HTML/CSS/JS), and software engineering principles.</p>
             </div>
-            <div class="card">
-                <div class="card-icon">🎨</div>
-                <h3>UI/UX Design</h3>
-                <p>Modern, pixel-perfect interfaces designed to delight users and drive maximum conversion rates.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🛒</div>
-                <h3>E-Commerce</h3>
-                <p>High-converting online boutique stores engineered for intuitive, seamless shopping experiences.</p>
+            <div class="spotlight-card">
+                <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <h3>ADCA</h3>
+                <p class="card-sub">Advanced Diploma in Computer Applications</p>
+                <p>Comprehensive training in computer applications, system software, database management, desktop publishing, and programming essentials.</p>
             </div>
         </div>
     </section>
 
-    <section id="work" class="work">
-        <span class="section-badge">✦ SELECTED WORKS</span>
-        <h2 class="section-title">Featured Demos & Projects</h2>
-        <p class="section-subtitle">Explore our hand-crafted, high-performance web applications built for real impact.</p>
-        
-        <div class="portfolio-grid">
-            
-            <div class="portfolio-card">
-                <div class="card-header">
-                    <span class="project-num">01</span>
-                    <span class="project-category">HOSPITALITY</span>
-                </div>
-                <h3>Gourmet Dining Experience</h3>
-                <p>Modern restaurant portal featuring dynamic menu filtering, interactive reservation system, and real-time order counter.</p>
-                
-                <div class="tech-tags">
-                    <span>HTML5</span>
-                    <span>CSS3</span>
-                    <span>JavaScript</span>
-                </div>
-                
+    <!-- Featured Projects & Portfolio Section -->
+    <section class="section" id="projects">
+        <div class="section-title">
+            <span class="sub-heading">MY PORTFOLIO</span>
+            <h2>Featured Projects & Live Demos</h2>
+        </div>
+
+        <div class="cards-grid grid-3">
+
+            <!-- Project 1: SPY RIFT BOT -->
+            <div class="spotlight-card portfolio-card featured-project">
+                <div class="project-tag-badge"><i class="fa-solid fa-robot"></i> Discord Bot</div>
+                <h3>Spy Rift Bot</h3>
+                <p class="project-tech">Node.js • Discord.js v14 • Express • Render</p>
+                <p class="project-desc">
+                    Custom-built automated Discord Bot featuring exact-channel welcome banners, embed generators, member counters, auto keep-alive server pinging, and custom commands.
+                </p>
                 <div class="card-footer">
-                    <a href="restaurant.html" target="_blank" class="portfolio-btn">
-                        <span>Explore Live Demo</span>
-                        <span class="arrow">↗</span>
+                    <a href="https://discord.gg/HgnNNXnQ6s" target="_blank" class="portfolio-btn btn-discord-accent">
+                        <i class="fa-brands fa-discord"></i> Test Bot in Discord
                     </a>
                 </div>
             </div>
 
-            <div class="portfolio-card">
-                <div class="card-header">
-                    <span class="project-num">02</span>
-                    <span class="project-category">CORPORATE</span>
-                </div>
-                <h3>Agency Landing Suite</h3>
-                <p>Ultra-clean corporate presentation page optimized for high conversion rates, client trust, and effortless lead capture.</p>
-                
-                <div class="tech-tags">
-                    <span>HTML5</span>
-                    <span>CSS3</span>
-                    <span>UI/UX</span>
-                </div>
-
+            <!-- Project 2: AI WEB AUDITOR -->
+            <div class="spotlight-card portfolio-card">
+                <div class="project-tag-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Tool</div>
+                <h3>AI Web Auditor</h3>
+                <p class="project-tech">JavaScript • AI Integration • Web APIs</p>
+                <p class="project-desc">
+                    An intelligent web auditing suite that analyzes web pages for performance, accessibility, SEO structure, and delivers automated AI-driven recommendations.
+                </p>
                 <div class="card-footer">
-                    <a href="restaurant.html" target="_blank" class="portfolio-btn">
-                        <span>Explore Live Demo</span>
-                        <span class="arrow">↗</span>
-                    </a>
+                    <a href="#" class="portfolio-btn"><i class="fa-solid fa-arrow-right"></i> Explore Project</a>
                 </div>
             </div>
 
-            <div class="portfolio-card">
-                <div class="card-header">
-                    <span class="project-num">03</span>
-                    <span class="project-category">SAAS & ANALYTICS</span>
-                </div>
-                <h3>Interactive Web App</h3>
-                <p>Real-time analytics dashboard with dynamic day selectors, live calculators, and smooth data visualization widgets.</p>
-                
-                <div class="tech-tags">
-                    <span>HTML5</span>
-                    <span>CSS3</span>
-                    <span>Vanilla JS</span>
-                </div>
-
+            <!-- Project 3: Savoria Restaurant -->
+            <div class="spotlight-card portfolio-card">
+                <div class="project-tag-badge"><i class="fa-solid fa-utensils"></i> Hospitality Web</div>
+                <h3>Savoria Restaurant</h3>
+                <p class="project-tech">HTML5 • CSS3 Grid • JS Cart Counter</p>
+                <p class="project-desc">
+                    Interactive restaurant demo with menu filtering, live table order cart counter, and table reservation modal popups.
+                </p>
                 <div class="card-footer">
-                    <a href="gym.html" target="_blank" class="portfolio-btn">
-                        <span>Explore Live Demo</span>
-                        <span class="arrow">↗</span>
-                    </a>
+                    <a href="restaurant.html" target="_blank" class="portfolio-btn"><i class="fa-solid fa-arrow-right"></i> Live Demo</a>
+                </div>
+            </div>
+
+            <!-- Project 4: PulseGym HUD -->
+            <div class="spotlight-card portfolio-card">
+                <div class="project-tag-badge"><i class="fa-solid fa-dumbbell"></i> Fitness & Analytics</div>
+                <h3>PulseGym HUD Portal</h3>
+                <p class="project-tech">JS Web App • Dynamic BMI Tracker</p>
+                <p class="project-desc">
+                    Member portal web app with daily workout routine tabs, live water intake counter (+/-), and real-time BMI calculator.
+                </p>
+                <div class="card-footer">
+                    <a href="gym.html" target="_blank" class="portfolio-btn"><i class="fa-solid fa-arrow-right"></i> Live Demo</a>
+                </div>
+            </div>
+
+            <!-- Project 5: AURA E-Commerce -->
+            <div class="spotlight-card portfolio-card">
+                <div class="project-tag-badge"><i class="fa-solid fa-bag-shopping"></i> E-Commerce</div>
+                <h3>AURA Minimal Store</h3>
+                <p class="project-tech">E-Commerce • Dynamic Shopping Bag</p>
+                <p class="project-desc">
+                    Curated minimal goods store featuring interactive product size selectors, dynamic total calculations, and a sliding drawer cart.
+                </p>
+                <div class="card-footer">
+                    <a href="ecommerce.html" target="_blank" class="portfolio-btn"><i class="fa-solid fa-arrow-right"></i> Live Demo</a>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <span class="section-badge">GET IN TOUCH</span>
-        <h2>Let's Build Something Custom</h2>
-        <form class="contact-form" action="https://formspree.io/f/xykrqvyz" method="POST">
-            <input type="text" name="name" placeholder="Your Full Name" required>
-            <input type="email" name="email" placeholder="Your Email Address" required>
-            <textarea name="message" placeholder="Brief details about your project..." rows="5" required></textarea>
-            <button type="submit" class="btn-primary">Send Message</button>
-        </form>
+    <!-- YouTube / Content Creator Section -->
+    <section class="section" id="creator">
+        <div class="banner-box">
+            <div class="banner-content">
+                <span class="sub-heading" style="color: #f59e0b;">CONTENT CREATOR</span>
+                <h2>SPY RIFT GAMING</h2>
+                <p>Check out my YouTube channel for gaming content, software tutorials, and bot development showcases.</p>
+                <div class="banner-actions">
+                    <a href="https://youtube.com/@spyriftgaming?si=5o8mDlnO0pyIjBxn" target="_blank" class="btn btn-yt">
+                        <i class="fa-brands fa-youtube"></i> Subscribe on YouTube
+                    </a>
+                    <a href="https://discord.gg/HgnNNXnQ6s" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-discord"></i> Discord Community
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 DevHoney. All rights reserved.</p>
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-title">
+            <span class="sub-heading">CONNECT WITH ME</span>
+            <h2>Get In Touch</h2>
+        </div>
+        <div class="contact-container">
+            <form action="https://formspree.io/f/xbldzyew" method="POST" class="contact-form">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 DevHoney Studio / SPY RIFT. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://youtube.com/@spyriftgaming?si=5o8mDlnO0pyIjBxn" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://discord.gg/HgnNNXnQ6s" target="_blank"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script_2.js"></script>
 </body>
 </html>
