@@ -3,26 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Developer — Bento Portfolio</title>
-    <!-- Google Fonts -->
+    <title>Creative Developer Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- GSAP Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-    <!-- CUSTOM GLOW CURSOR -->
     <div class="cursor-glow"></div>
 
     <!-- HEADER -->
-    <header>
+    <header class="navbar">
         <a href="#" class="logo">DEV<span>.LAB</span></a>
         <div class="status-badge">
-            <span class="pulse-dot"></span> Available for Q3/Q4 Projects
+            <span class="pulse-dot"></span> Available for Projects
         </div>
         <a href="#contact" class="nav-btn">Let's Talk →</a>
     </header>
@@ -35,7 +32,7 @@
             <p class="hero-desc">Full-stack creative developer crafting immersive web experiences, high-performance visual systems, and interactive 3D graphics.</p>
         </section>
 
-        <!-- KINETIC MARQUEE TICKER -->
+        <!-- MARQUEE TICKER -->
         <div class="marquee-wrapper">
             <div class="marquee-track">
                 <span>UI/UX DESIGN • MOTION GRAPHICS • THREE.JS • FRONTEND ARCHITECTURE • BRAND IDENTITY • </span>
@@ -47,7 +44,6 @@
         <section class="bento-container" id="work">
             <div class="bento-grid">
                 
-                <!-- Bento 1: Large Featured Work -->
                 <div class="bento-card col-span-2 row-span-2 featured-card">
                     <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80');"></div>
                     <div class="card-content">
@@ -57,7 +53,6 @@
                     </div>
                 </div>
 
-                <!-- Bento 2: Quick Stats -->
                 <div class="bento-card stat-card">
                     <div class="card-content">
                         <h2 class="counter" data-target="45">0</h2>
@@ -65,7 +60,6 @@
                     </div>
                 </div>
 
-                <!-- Bento 3: Tech Stack Badges -->
                 <div class="bento-card stack-card">
                     <div class="card-content">
                         <h4>Stack</h4>
@@ -79,7 +73,6 @@
                     </div>
                 </div>
 
-                <!-- Bento 4: Secondary Project -->
                 <div class="bento-card col-span-2 project-mini">
                     <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1000&q=80');"></div>
                     <div class="card-content">
@@ -89,7 +82,6 @@
                     </div>
                 </div>
 
-                <!-- Bento 5: Interactive CTA -->
                 <div class="bento-card cta-card">
                     <div class="card-content">
                         <h3>Have an idea?</h3>
