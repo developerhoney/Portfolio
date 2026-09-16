@@ -3,109 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Developer Portfolio</title>
+    <title>Creative Developer — Bento Portfolio</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- External CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- GSAP Animation Libraries -->
+    <!-- GSAP Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-    <!-- PRELOADER -->
-    <div class="preloader">
-        <div class="loader-count" id="counter">0%</div>
-        <div class="loader-signature" id="signature">hello</div>
-    </div>
-    <div class="preloader-curtain"></div>
+    <!-- CUSTOM GLOW CURSOR -->
+    <div class="cursor-glow"></div>
 
-    <!-- HEADER / NAVIGATION -->
+    <!-- HEADER -->
     <header>
-        <div class="logo">wagas.</div>
-        <nav>
-            <ul>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <a href="#" class="logo">DEV<span>.LAB</span></a>
+        <div class="status-badge">
+            <span class="pulse-dot"></span> Available for Q3/Q4 Projects
+        </div>
+        <a href="#contact" class="nav-btn">Let's Talk →</a>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main>
         <!-- HERO SECTION -->
         <section class="hero">
-            <h1 class="hero-title">CREATIVE<br>DEVELOPER</h1>
-            <div class="hero-subtitle">
-                <span>Visuals</span> • <span>Code</span> • <span>Experience</span>
-            </div>
-            <div class="scroll-badge">
-                <span>Scroll to Explore</span>
-                ↓
-            </div>
+            <div class="hero-tag">[ CREATIVE TECH & GRAPHIC ARCHITECTURE ]</div>
+            <h1 class="hero-title">BUILDING <br><span class="gradient-text">DIGITAL MAGIC</span></h1>
+            <p class="hero-desc">Full-stack creative developer crafting immersive web experiences, high-performance visual systems, and interactive 3D graphics.</p>
         </section>
 
-        <!-- EXPERTISE SECTION -->
-        <section class="section-container" id="expertise">
-            <div class="section-header">
-                <h2>My Expertise</h2>
-                <span class="section-tag">01 / SERVICES</span>
+        <!-- KINETIC MARQUEE TICKER -->
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+                <span>UI/UX DESIGN • MOTION GRAPHICS • THREE.JS • FRONTEND ARCHITECTURE • BRAND IDENTITY • </span>
+                <span>UI/UX DESIGN • MOTION GRAPHICS • THREE.JS • FRONTEND ARCHITECTURE • BRAND IDENTITY • </span>
             </div>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <span class="card-num">01</span>
-                    <h3>Creative Development</h3>
-                    <p>Building fast, responsive, and scalable interfaces with modern front-end technologies.</p>
-                </div>
-                <div class="expertise-card">
-                    <span class="card-num">02</span>
-                    <h3>Motion & Interaction</h3>
-                    <p>Turning static layouts into interactive user experiences through meaningful animation.</p>
-                </div>
-                <div class="expertise-card">
-                    <span class="card-num">03</span>
-                    <h3>UI / UX Design</h3>
-                    <p>Creating clean design systems with strong typography hierarchy, clarity, and usability.</p>
-                </div>
-                <div class="expertise-card">
-                    <span class="card-num">04</span>
-                    <h3>Modern Web Apps</h3>
-                    <p>Developing full-stack applications with component-based architecture and dynamic data.</p>
-                </div>
-            </div>
-        </section>
+        </div>
 
-        <!-- SELECTED WORKS SECTION -->
-        <section class="section-container" id="work">
-            <div class="section-header">
-                <h2>Selected Work</h2>
-                <span class="section-tag">02 / PORTFOLIO</span>
-            </div>
-            <div class="work-grid">
-                <div class="work-card">
-                    <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="work-info">
-                        <h4>Creative Clothing Website</h4>
-                        <p>E-commerce experience designed for contemporary fashion brands.</p>
+        <!-- BENTO GRID SECTION -->
+        <section class="bento-container" id="work">
+            <div class="bento-grid">
+                
+                <!-- Bento 1: Large Featured Work -->
+                <div class="bento-card col-span-2 row-span-2 featured-card">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80');"></div>
+                    <div class="card-content">
+                        <span class="card-category">Case Study</span>
+                        <h3>Neural Art Synthesizer</h3>
+                        <p>Generative visual platform powered by WebGL & WebGPU canvas rendering.</p>
                     </div>
                 </div>
-                <div class="work-card">
-                    <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="work-info">
-                        <h4>Luxury Timepieces</h4>
-                        <p>Minimalist showcase highlighting Swiss craftsmanship and modern design.</p>
+
+                <!-- Bento 2: Quick Stats -->
+                <div class="bento-card stat-card">
+                    <div class="card-content">
+                        <h2 class="counter" data-target="45">0</h2>
+                        <p>Projects Shipped</p>
                     </div>
                 </div>
+
+                <!-- Bento 3: Tech Stack Badges -->
+                <div class="bento-card stack-card">
+                    <div class="card-content">
+                        <h4>Stack</h4>
+                        <div class="tags">
+                            <span>React</span>
+                            <span>Three.js</span>
+                            <span>GSAP</span>
+                            <span>Node</span>
+                            <span>Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento 4: Secondary Project -->
+                <div class="bento-card col-span-2 project-mini">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1000&q=80');"></div>
+                    <div class="card-content">
+                        <span class="card-category">E-Commerce</span>
+                        <h3>HyperDrive Studio</h3>
+                        <p>Interactive 3D configurator built for modern automotive accessories.</p>
+                    </div>
+                </div>
+
+                <!-- Bento 5: Interactive CTA -->
+                <div class="bento-card cta-card">
+                    <div class="card-content">
+                        <h3>Have an idea?</h3>
+                        <a href="mailto:hello@example.com" class="cta-link">Start a Project ⚡</a>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
 
-    <!-- External JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
