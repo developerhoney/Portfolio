@@ -1,325 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FOTONAUT Style - Asymmetric Visual Layout</title>
-  <style>
-    :root {
-      --bg-blue: #4854e8;
-      --card-red: #ff204e;
-      --text-white: #ffffff;
-      --text-dim: rgba(255, 255, 255, 0.75);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-blue);
-      color: var(--text-white);
-      overflow-x: hidden;
-      min-height: 100vh;
-      cursor: none;
-    }
-
-    /* Custom Follower Cursor */
-    .cursor-dot {
-      width: 8px;
-      height: 8px;
-      background: #fff;
-      position: fixed;
-      top: 0; left: 0;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    .cursor-outline {
-      width: 40px;
-      height: 40px;
-      border: 2px solid rgba(255, 255, 255, 0.6);
-      position: fixed;
-      top: 0; left: 0;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transition: transform 0.15s ease-out;
-    }
-
-    /* Navbar */
-    header {
-      position: fixed;
-      top: 0; width: 100%;
-      padding: 30px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-    }
-
-    .nav-tag {
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.8;
-    }
-
-    /* Hero Main Section */
-    .hero-container {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Asymmetric Vertical Red Block */
-    .red-block {
-      position: absolute;
-      width: 320px;
-      height: 82vh;
-      background-color: var(--card-red);
-      left: 28%;
-      top: 9vh;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-      border-radius: 4px;
-      z-index: 1;
-    }
-
-    /* Giant Overlapping Title */
-    .hero-title {
-      position: relative;
-      z-index: 10;
-      font-size: clamp(4rem, 13vw, 11rem);
-      font-weight: 900;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      text-align: center;
-      pointer-events: none;
-      user-select: none;
-      line-height: 1;
-    }
-
-    /* Subtitle inside Red Block */
-    .block-tag {
-      position: absolute;
-      top: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      text-align: center;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      z-index: 2;
-    }
-
-    /* Interactive Floating 3D Elements */
-    .floating-shape {
-      position: absolute;
-      z-index: 5;
-      pointer-events: none;
-      transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .sphere-1 {
-      width: 45px; height: 45px;
-      background: radial-gradient(circle at 30% 30%, #ff6b81, #ff204e);
-      border-radius: 50%;
-      top: 12%; right: 28%;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-
-    .sphere-2 {
-      width: 30px; height: 30px;
-      background: radial-gradient(circle at 30% 30%, #ff6b81, #ff204e);
-      border-radius: 50%;
-      bottom: 22%; left: 12%;
-    }
-
-    .ring-1 {
-      width: 40px; height: 40px;
-      border: 6px solid #6c5ce7;
-      border-radius: 50%;
-      top: 22%; left: 18%;
-    }
-
-    .capsule-1 {
-      width: 20px; height: 45px;
-      background: #ff204e;
-      border-radius: 10px;
-      bottom: 18%; right: 10%;
-      transform: rotate(-30deg);
-    }
-
-    /* Bottom Stats Grid */
-    .stats-bar {
-      position: absolute;
-      bottom: 8%;
-      width: 84%;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      z-index: 10;
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .stat-label {
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      margin-top: 4px;
-      text-transform: uppercase;
-    }
-
-    /* CTA Pill Button */
-    .cta-btn {
-      position: absolute;
-      bottom: 24%;
-      z-index: 20;
-      background: #ffffff;
-      color: #000;
-      padding: 14px 38px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      transition: all 0.3s ease;
-    }
-
-    .cta-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      .red-block { width: 75vw; left: 12.5vw; }
-      .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 20px 10px; }
-      body { cursor: auto; }
-      .cursor-dot, .cursor-outline { display: none; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Developer Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- GSAP Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-  <!-- Custom Cursor -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-outline"></div>
-
-  <!-- Header -->
-  <header>
-    <div class="nav-tag">FOTONAUT LABS</div>
-    <div class="nav-tag">MENU — 01</div>
-  </header>
-
-  <!-- Hero Container -->
-  <div class="hero-container" id="hero">
-    
-    <!-- Red Asymmetric Block -->
-    <div class="red-block">
-      <div class="block-tag">THE MOST ENTERTAINING EXPERIENCE IN SPACE</div>
+    <!-- PRELOADER -->
+    <div class="preloader">
+        <div class="loader-count" id="counter">0%</div>
+        <div class="loader-signature" id="signature">hello</div>
     </div>
+    <div class="preloader-curtain"></div>
 
-    <!-- Overlapping Title -->
-    <h1 class="hero-title">FOTONAUT</h1>
+    <!-- HEADER / NAVIGATION -->
+    <header>
+        <div class="logo">wagas.</div>
+        <nav>
+            <ul>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- 3D Floating Shapes -->
-    <div class="floating-shape sphere-1" data-speed="3"></div>
-    <div class="floating-shape sphere-2" data-speed="-2"></div>
-    <div class="floating-shape ring-1" data-speed="-4"></div>
-    <div class="floating-shape capsule-1" data-speed="5"></div>
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <h1 class="hero-title">CREATIVE<br>DEVELOPER</h1>
+            <div class="hero-subtitle">
+                <span>Visuals</span> • <span>Code</span> • <span>Experience</span>
+            </div>
+            <div class="scroll-badge">
+                <span>Scroll to Explore</span>
+                ↓
+            </div>
+        </section>
 
-    <!-- Interactive CTA Button -->
-    <a href="#" class="cta-btn">WHY FOTONAUT</a>
+        <!-- EXPERTISE SECTION -->
+        <section class="section-container" id="expertise">
+            <div class="section-header">
+                <h2>My Expertise</h2>
+                <span class="section-tag">01 / SERVICES</span>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <span class="card-num">01</span>
+                    <h3>Creative Development</h3>
+                    <p>Building fast, responsive, and scalable interfaces with modern front-end technologies.</p>
+                </div>
+                <div class="expertise-card">
+                    <span class="card-num">02</span>
+                    <h3>Motion & Interaction</h3>
+                    <p>Turning static layouts into interactive user experiences through meaningful animation.</p>
+                </div>
+                <div class="expertise-card">
+                    <span class="card-num">03</span>
+                    <h3>UI / UX Design</h3>
+                    <p>Creating clean design systems with strong typography hierarchy, clarity, and usability.</p>
+                </div>
+                <div class="expertise-card">
+                    <span class="card-num">04</span>
+                    <h3>Modern Web Apps</h3>
+                    <p>Developing full-stack applications with component-based architecture and dynamic data.</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Stats Bar -->
-    <div class="stats-bar">
-      <div class="stat-item">
-        <div class="stat-number" data-target="999">0</div>
-        <div class="stat-label">UNLIMITED PHOTOS</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="68">0</div>
-        <div class="stat-label">PROP SETS / BACKDROPS</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="2551">0</div>
-        <div class="stat-label">EVENTS COMPLETED</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="100">0</div>
-        <div class="stat-label">% FREE DELIVERY</div>
-      </div>
-    </div>
+        <!-- SELECTED WORKS SECTION -->
+        <section class="section-container" id="work">
+            <div class="section-header">
+                <h2>Selected Work</h2>
+                <span class="section-tag">02 / PORTFOLIO</span>
+            </div>
+            <div class="work-grid">
+                <div class="work-card">
+                    <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="work-info">
+                        <h4>Creative Clothing Website</h4>
+                        <p>E-commerce experience designed for contemporary fashion brands.</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="work-info">
+                        <h4>Luxury Timepieces</h4>
+                        <p>Minimalist showcase highlighting Swiss craftsmanship and modern design.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  </div>
-
-  <script>
-    // Custom Cursor Tracking
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
-
-    window.addEventListener('mousemove', (e) => {
-      const { clientX: x, clientY: y } = e;
-      cursorDot.style.left = `${x}px`;
-      cursorDot.style.top = `${y}px`;
-      
-      cursorOutline.animate({
-        left: `${x - 20}px`,
-        top: `${y - 20}px`
-      }, { duration: 300, fill: "forwards" });
-    });
-
-    // Mouse Parallax for Floating 3D Shapes
-    const hero = document.getElementById('hero');
-    const shapes = document.querySelectorAll('.floating-shape');
-
-    hero.addEventListener('mousemove', (e) => {
-      const x = (window.innerWidth / 2 - e.clientX) / 30;
-      const y = (window.innerHeight / 2 - e.clientY) / 30;
-
-      shapes.forEach(shape => {
-        const speed = shape.getAttribute('data-speed');
-        shape.style.transform = `translate3d(${x * speed}px, ${y * speed}px, 0px)`;
-      });
-    });
-
-    // Stat Numbers Counter Animation
-    const counters = document.querySelectorAll('.stat-number');
-
-    counters.forEach(counter => {
-      const updateCount = () => {
-        const target = +counter.getAttribute('data-target');
-        const count = +counter.innerText;
-        const inc = Math.ceil(target / 60);
-
-        if (count < target) {
-          counter.innerText = count + inc > target ? target : count + inc;
-          setTimeout(updateCount, 25);
-        } else {
-          counter.innerText = target.toLocaleString();
-        }
-      };
-      updateCount();
-    });
-  </script>
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
