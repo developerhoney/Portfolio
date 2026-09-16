@@ -1,63 +1,56 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Cursor Glow Follow Effect
-    const cursorGlow = document.querySelector('.cursor-glow');
-    if (cursorGlow) {
-        window.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = `${e.clientX}px`;
-            cursorGlow.style.top = `${e.clientY}px`;
-        });
+const counterElem = document.getElementById('counter');
+const signatureElem = document.getElementById('signature');
+
+let countObj = { value: 0 };
+
+const tl = gsap.timeline();
+
+// 1. Counter Animation (0% -> 100%)
+tl.to(countObj, {
+    value: 100,
+    duration: 2.2,
+    ease: "power2.inOut",
+    onUpdate: function () {
+        counterElem.textContent = Math.floor(countObj.value) + '%';
     }
-
-    // 2. Smooth Scrolling for Navigation Links
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (targetId && targetId !== '#') {
-                e.preventDefault();
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-
-    // 3. Formspree AJAX Contact Form Handling
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-
-            // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
-
-            try {
-                const response = await fetch('https://formspree.io/f/xykrqvyz', {
-                    method: 'POST',
-                    body: new FormData(contactForm),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    alert('Thank you! Your message has been sent successfully.');
-                    contactForm.reset();
-                } else {
-                    alert('Oops! Something went wrong. Please check your form endpoint.');
-                }
-            } catch (error) {
-                alert('Error submitting form. Please check your network connection.');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-            }
-        });
-    }
-});
+})
+// 2. Hide counter and display signature text
+.to(counterElem, {
+    opacity: 0,
+    duration: 0.4,
+    display: "none"
+})
+.to(signatureElem, {
+    opacity: 1,
+    scale: 1,
+    duration: 0.8,
+    ease: "back.out(1.7)"
+})
+.to(signatureElem, {
+    opacity: 0,
+    delay: 0.4,
+    duration: 0.4
+})
+// 3. Curtain slide-up reveal
+.to('.preloader-curtain', {
+    y: '-100%',
+    duration: 0.9,
+    ease: "power4.inOut"
+})
+.to('.preloader', {
+    display: "none",
+    duration: 0
+}, "-=0.9")
+// 4. Hero text entrance animation
+.from('.hero-title', {
+    y: 80,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power3.out"
+}, "-=0.4")
+.from('.hero-subtitle', {
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power3.out"
+}, "-=0.8");
