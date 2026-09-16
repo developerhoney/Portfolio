@@ -1,56 +1,51 @@
-const counterElem = document.getElementById('counter');
-const signatureElem = document.getElementById('signature');
+// 1. Mouse Follower Glow Animation
+const cursorGlow = document.querySelector('.cursor-glow');
 
-let countObj = { value: 0 };
+window.addEventListener('mousemove', (e) => {
+    gsap.to(cursorGlow, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.5,
+        ease: "power2.out"
+    });
+});
 
-const tl = gsap.timeline();
+// 2. Entrance Animation for Hero Elements
+gsap.from('.hero-tag', { opacity: 0, y: -20, duration: 0.8, delay: 0.2 });
+gsap.from('.hero-title', { opacity: 0, y: 40, duration: 1, delay: 0.4 });
+gsap.from('.hero-desc', { opacity: 0, y: 20, duration: 0.8, delay: 0.7 });
 
-// 1. Counter Animation (0% -> 100%)
-tl.to(countObj, {
-    value: 100,
-    duration: 2.2,
-    ease: "power2.inOut",
-    onUpdate: function () {
-        counterElem.textContent = Math.floor(countObj.value) + '%';
+// 3. Staggered Bento Cards Scroll Reveal
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.from('.bento-card', {
+    scrollTrigger: {
+        trigger: '.bento-container',
+        start: 'top 80%',
+    },
+    y: 60,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: "power3.out"
+});
+
+// 4. Counter Number Animation
+const counter = document.querySelector('.counter');
+const target = +counter.getAttribute('data-target');
+
+ScrollTrigger.create({
+    trigger: counter,
+    start: 'top 85%',
+    onEnter: () => {
+        let countObj = { val: 0 };
+        gsap.to(countObj, {
+            val: target,
+            duration: 2,
+            ease: "power1.out",
+            onUpdate: () => {
+                counter.textContent = Math.floor(countObj.val) + '+';
+            }
+        });
     }
-})
-// 2. Hide counter and display signature text
-.to(counterElem, {
-    opacity: 0,
-    duration: 0.4,
-    display: "none"
-})
-.to(signatureElem, {
-    opacity: 1,
-    scale: 1,
-    duration: 0.8,
-    ease: "back.out(1.7)"
-})
-.to(signatureElem, {
-    opacity: 0,
-    delay: 0.4,
-    duration: 0.4
-})
-// 3. Curtain slide-up reveal
-.to('.preloader-curtain', {
-    y: '-100%',
-    duration: 0.9,
-    ease: "power4.inOut"
-})
-.to('.preloader', {
-    display: "none",
-    duration: 0
-}, "-=0.9")
-// 4. Hero text entrance animation
-.from('.hero-title', {
-    y: 80,
-    opacity: 0,
-    duration: 1.2,
-    ease: "power3.out"
-}, "-=0.4")
-.from('.hero-subtitle', {
-    y: 30,
-    opacity: 0,
-    duration: 0.8,
-    ease: "power3.out"
-}, "-=0.8");
+});
