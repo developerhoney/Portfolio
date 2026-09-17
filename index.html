@@ -1,162 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEVHONEY — Creative Developer Portfolio</title>
-    
-    <!-- Favicon Link -->
-    <link rel="icon" type="image/png" href="favicon_2.png">
-
-    <!-- Google Fonts & Font Awesome Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style_2.css">
-    
-    <!-- GSAP Animation Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEVHONEY | Creative Developer Portfolio</title>
+  <link rel="stylesheet" href="style_2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="cursor-glow"></div>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
 
-    <!-- HEADER / NAVBAR -->
-    <header class="navbar">
-        <a href="#" class="logo">DEV<span>HONEY</span></a>
-        <div class="status-badge">
-            <span class="pulse-dot"></span> Available for Projects
-        </div>
-        <a href="#contact" class="nav-btn">Connect With Me →</a>
-    </header>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="#" class="logo">DEV<span>HONEY</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact" class="btn-primary">Contact</a>
+    </div>
+  </nav>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section class="hero">
-            <div class="hero-tag">[ CREATIVE TECH & GRAPHIC ARCHITECTURE ]</div>
-            <h1 class="hero-title">BUILDING <br><span class="gradient-text">DIGITAL MAGIC</span></h1>
-            <p class="hero-desc">Full-stack creative developer crafting immersive web experiences, high-performance visual systems, and interactive 3D graphics.</p>
-        </section>
+  <!-- Hero Section -->
+  <section class="hero" id="about">
+    <div class="hero-content">
+      <span class="badge">Full-Stack & Web Systems</span>
+      <h1>Crafting High-Performance Digital Experiences.</h1>
+      <p>Specializing in interactive web applications, modular UI systems, and modern front-end architecture.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-secondary">Get In Touch</a>
+      </div>
+    </div>
+  </section>
 
-        <!-- MARQUEE TICKER -->
-        <div class="marquee-wrapper">
-            <div class="marquee-track">
-                <span>UI/UX DESIGN • MOTION GRAPHICS • THREE.JS • FRONTEND ARCHITECTURE • BRAND IDENTITY • </span>
-                <span>UI/UX DESIGN • MOTION GRAPHICS • THREE.JS • FRONTEND ARCHITECTURE • BRAND IDENTITY • </span>
-            </div>
-        </div>
+  <!-- Certifications & Education Section -->
+  <section class="section" id="certifications">
+    <div class="section-title">
+      <h2>Education & Certifications</h2>
+      <p>Computer Science foundations and professional qualifications</p>
+    </div>
 
-        <!-- BENTO GRID SECTION -->
-        <section class="bento-container" id="work">
-            <div class="bento-grid">
-                
-                <!-- Bento 1: Featured Work (Gym HUD) -->
-                <a href="gym_2.html" class="bento-card col-span-2 row-span-2 featured-card" style="text-decoration:none; color:inherit;">
-                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1000&q=80');"></div>
-                    <div class="card-content">
-                        <span class="card-category">Web App Showcase</span>
-                        <h3>PulseGym HUD Interface</h3>
-                        <p>Interactive fitness tracking dashboard with live BMI calculator & workout planner.</p>
-                    </div>
-                </a>
+    <div class="bento-grid">
+      <!-- ADCA Card -->
+      <div class="bento-card">
+        <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h3>ADCA</h3>
+        <span class="subtitle">Advanced Diploma in Computer Applications</span>
+        <p>Comprehensive training covering office automation, database management, software fundamentals, and web design basics.</p>
+        <span class="tag">Diploma</span>
+      </div>
 
-                <!-- Bento 2: Stats -->
-                <div class="bento-card stat-card">
-                    <div class="card-content">
-                        <h2 class="counter" data-target="45">0</h2>
-                        <p>Projects Shipped</p>
-                    </div>
-                </div>
+      <!-- CS50 Card -->
+      <div class="bento-card highlight-card">
+        <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+        <h3>CS50</h3>
+        <span class="subtitle">Harvard University</span>
+        <p>Rigorous computer science foundation covering algorithms, memory management, data structures, C, Python, and SQL.</p>
+        <span class="tag accent">Harvard CS</span>
+      </div>
 
-                <!-- Bento 3: Stack -->
-                <div class="bento-card stack-card">
-                    <div class="card-content">
-                        <h4>Stack</h4>
-                        <div class="tags">
-                            <span>React</span>
-                            <span>Three.js</span>
-                            <span>GSAP</span>
-                            <span>Node</span>
-                            <span>Tailwind</span>
-                        </div>
-                    </div>
-                </div>
+      <!-- CS50x Card -->
+      <div class="bento-card highlight-card">
+        <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <h3>CS50x</h3>
+        <span class="subtitle">edX / HarvardX</span>
+        <p>Full-stack web software specification including dynamic web application development with Flask, JavaScript, HTML/CSS, and web APIs.</p>
+        <span class="tag accent">Verified Certificate</span>
+      </div>
+    </div>
+  </section>
 
-                <!-- Bento 4: Secondary Project (E-Commerce) -->
-                <a href="ecommerce_2.html" class="bento-card project-mini" style="text-decoration:none; color:inherit;">
-                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80');"></div>
-                    <div class="card-content">
-                        <span class="card-category">E-Commerce</span>
-                        <h3>AURA — Minimal Goods</h3>
-                        <p>Curated luxury minimalist store interface.</p>
-                    </div>
-                </a>
+  <!-- Projects Section -->
+  <section class="section" id="projects">
+    <div class="section-title">
+      <h2>Featured Interactive Apps</h2>
+      <p>Live functional applications built inside the portfolio ecosystem</p>
+    </div>
 
-                <!-- Bento 5: Project (Restaurant) -->
-                <a href="restaurant_2.html" class="bento-card project-mini" style="text-decoration:none; color:inherit;">
-                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80');"></div>
-                    <div class="card-content">
-                        <span class="card-category">Hospitality</span>
-                        <h3>Savoria Culinary Experience</h3>
-                        <p>Artisanal dining table booking & menu platform.</p>
-                    </div>
-                </a>
+    <div class="bento-grid">
+      <a href="gym_2.html" class="bento-card project-card">
+        <div class="card-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <h3>PulseGym HUD</h3>
+        <p>Interactive fitness dashboard with workout splits, hydration tracking, and live BMI engine.</p>
+        <span class="link-btn">Launch App <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
 
-                <!-- Bento 6: SOCIAL LINKS CARD -->
-                <div class="bento-card social-bento col-span-2" id="socials">
-                    <div class="card-content">
-                        <h3>Connect Everywhere</h3>
-                        <p class="social-sub">Follow & Reach out across platforms</p>
-                        <div class="social-grid">
-                            <a href="https://github.com/developerhoney" target="_blank" class="social-btn github"><i class="fa-brands fa-github"></i> GitHub</a>
-                            <a href="https://www.linkedin.com/in/developer-honey-6b2049428/" target="_blank" class="social-btn linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                            <a href="https://www.instagram.com/h_neey_?stkn=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram"><i class="fa-brands fa-instagram"></i> @h_neey_</a>
-                            <a href="https://www.instagram.com/spyrift?stkn=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram-alt"><i class="fa-brands fa-instagram"></i> @spyrift</a>
-                            <a href="https://discord.gg/HgnNNXnQ6s" target="_blank" class="social-btn discord"><i class="fa-brands fa-discord"></i> Discord</a>
-                            <a href="https://youtube.com/@spyriftgaming?si=EXhmtU5_-qIpFmR0" target="_blank" class="social-btn youtube"><i class="fa-brands fa-youtube"></i> YouTube</a>
-                        </div>
-                    </div>
-                </div>
+      <a href="ecommerce_2.html" class="bento-card project-card">
+        <div class="card-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        <h3>AURA Minimal Goods</h3>
+        <p>Minimalist e-commerce interface with item sizing selectors and real-time drawer subtotal calculation.</p>
+        <span class="link-btn">Launch App <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
 
-            </div>
-        </section>
+      <a href="restaurant_2.html" class="bento-card project-card">
+        <div class="card-icon"><i class="fa-solid fa-utensils"></i></div>
+        <h3>Savoria Culinary</h3>
+        <p>Fine-dining digital menu with dynamic category filtering, table order construction, and booking modal.</p>
+        <span class="link-btn">Launch App <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+  </section>
 
-        <!-- FORMSPREE CONTACT FORM SECTION -->
-        <section class="bento-container" id="contact" style="padding-top:0;">
-            <div class="bento-card" style="max-width: 600px; margin: 0 auto; padding: 2.5rem;">
-                <h3 style="font-family: var(--font-heading); margin-bottom: 0.5rem; font-size: 1.8rem;">Send a Message</h3>
-                <p style="color: var(--text-body); margin-bottom: 1.5rem; font-size: 0.9rem;">Have a project in mind? Drop a line directly below.</p>
-                
-                <form action="https://formspree.io/f/xyknqypt" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
-                    <input type="text" name="name" placeholder="Your Name" required style="padding: 12px 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glow); border-radius: 8px; color: #fff; outline: none;">
-                    <input type="email" name="email" placeholder="Your Email" required style="padding: 12px 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glow); border-radius: 8px; color: #fff; outline: none;">
-                    <textarea name="message" rows="4" placeholder="Your Message" required style="padding: 12px 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glow); border-radius: 8px; color: #fff; outline: none; resize: none;"></textarea>
-                    <button type="submit" class="nav-btn" style="border: none; cursor: pointer; text-align: center; margin-top: 0.5rem;">Send Message →</button>
-                </form>
-            </div>
-        </section>
-    </main>
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <div class="section-title">
+      <h2>Get In Touch</h2>
+      <p>Send a message directly to start a conversation</p>
+    </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-left">
-                <a href="#" class="logo">DEV<span>HONEY</span></a>
-                <p>© 2026 DEVHONEY. All rights reserved.</p>
-            </div>
-            <div class="footer-socials">
-                <a href="https://github.com/developerhoney" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/developer-honey-6b2049428/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/h_neey_?stkn=ZDNlZDc0MzIxNw==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.instagram.com/spyrift?stkn=ZDNlZDc0MzIxNw==" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
-                <a href="https://discord.gg/HgnNNXnQ6s" target="_blank"><i class="fa-brands fa-discord"></i></a>
-                <a href="https://youtube.com/@spyriftgaming?si=EXhmtU5_-qIpFmR0" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-            </div>
-        </div>
-    </footer>
+    <form class="contact-form" action="https://formspree.io/f/xbjnqpyz" method="POST" id="contactForm">
+      <div class="input-group">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+      </div>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn-primary">Send Message</button>
+      <p id="formStatus" class="form-status"></p>
+    </form>
+  </section>
 
-    <script src="script_2.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
