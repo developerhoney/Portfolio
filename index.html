@@ -10,119 +10,128 @@
 </head>
 <body>
 
-  <!-- Custom Cursor -->
   <div class="cursor-dot"></div>
   <div class="cursor-glow"></div>
 
-  <!-- Navigation -->
+  <!-- Navbar -->
   <nav class="navbar">
-    <a href="#" class="logo">DEV<span>HONEY</span></a>
+    <a href="index.html" class="logo">DEV<span>HONEY</span></a>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#certifications">Certifications</a>
       <a href="#projects">Projects</a>
-      <a href="#contact" class="btn-primary">Contact</a>
+      <a href="#contact" class="btn-primary nav-btn">Contact</a>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero" id="about">
-    <div class="hero-content">
-      <span class="badge">Full-Stack & Web Systems</span>
-      <h1>Crafting High-Performance Digital Experiences.</h1>
-      <p>Specializing in interactive web applications, modular UI systems, and modern front-end architecture.</p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn-primary">View Projects</a>
-        <a href="#contact" class="btn-secondary">Get In Touch</a>
-      </div>
+  <header id="about" class="hero">
+    <span class="badge">Full-Stack Engineer</span>
+    <h1>Crafting High-Performance Digital Experiences.</h1>
+    <p>Specializing in interactive web applications, modular UI systems, and modern front-end architecture.</p>
+    
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
     </div>
-  </section>
 
-  <!-- Certifications & Education Section -->
-  <section class="section" id="certifications">
+    <!-- Social Media Links -->
+    <div class="social-links">
+      <a href="https://github.com/developerhoney" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://discord.com" target="_blank" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+    </div>
+  </header>
+
+  <!-- Education & Certifications -->
+  <section id="certifications" class="section">
     <div class="section-title">
       <h2>Education & Certifications</h2>
-      <p>Computer Science foundations and professional qualifications</p>
+      <p>Computer Science foundations and professional qualifications.</p>
     </div>
-
     <div class="bento-grid">
-      <!-- ADCA Card -->
       <div class="bento-card">
         <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
         <h3>ADCA</h3>
-        <span class="subtitle">Advanced Diploma in Computer Applications</span>
-        <p>Comprehensive training covering office automation, database management, software fundamentals, and web design basics.</p>
-        <span class="tag">Diploma</span>
+        <p>Advanced Diploma in Computer Applications focusing on core software and office systems.</p>
+        <span class="tag accent">Certified</span>
       </div>
-
-      <!-- CS50 Card -->
-      <div class="bento-card highlight-card">
+      <div class="bento-card">
         <div class="card-icon"><i class="fa-solid fa-code"></i></div>
         <h3>CS50</h3>
-        <span class="subtitle">Harvard University</span>
-        <p>Rigorous computer science foundation covering algorithms, memory management, data structures, C, Python, and SQL.</p>
-        <span class="tag accent">Harvard CS</span>
+        <p>Harvard's introduction to computer science, covering algorithms, data structures, and C.</p>
+        <span class="tag accent">HarvardX</span>
       </div>
-
-      <!-- CS50x Card -->
-      <div class="bento-card highlight-card">
+      <div class="bento-card">
         <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
         <h3>CS50x</h3>
-        <span class="subtitle">edX / HarvardX</span>
-        <p>Full-stack web software specification including dynamic web application development with Flask, JavaScript, HTML/CSS, and web APIs.</p>
-        <span class="tag accent">Verified Certificate</span>
+        <p>Advanced web development applications using Python, JavaScript, and SQL databases.</p>
+        <span class="tag accent">HarvardX</span>
       </div>
     </div>
   </section>
 
   <!-- Projects Section -->
-  <section class="section" id="projects">
+  <section id="projects" class="section">
     <div class="section-title">
-      <h2>Featured Interactive Apps</h2>
-      <p>Live functional applications built inside the portfolio ecosystem</p>
+      <h2>Featured Projects</h2>
+      <p>Live functional applications built inside the portfolio ecosystem.</p>
     </div>
-
     <div class="bento-grid">
-      <a href="gym_2.html" class="bento-card project-card">
+      <a href="gym_2.html" class="bento-card">
         <div class="card-icon"><i class="fa-solid fa-dumbbell"></i></div>
         <h3>PulseGym HUD</h3>
         <p>Interactive fitness dashboard with workout splits, hydration tracking, and live BMI engine.</p>
-        <span class="link-btn">Launch App <i class="fa-solid fa-arrow-right"></i></span>
+        <span class="subtitle">Launch App &rarr;</span>
       </a>
 
-      <a href="ecommerce_2.html" class="bento-card project-card">
+      <a href="ecommerce_2.html" class="bento-card">
         <div class="card-icon"><i class="fa-solid fa-bag-shopping"></i></div>
         <h3>AURA Minimal Goods</h3>
-        <p>Minimalist e-commerce interface with item sizing selectors and real-time drawer subtotal calculation.</p>
-        <span class="link-btn">Launch App <i class="fa-solid fa-arrow-right"></i></span>
+        <p>Minimalist e-commerce interface with item price selectors and real-time drawer subtotal simulation.</p>
+        <span class="subtitle">Launch App &rarr;</span>
       </a>
 
-      <a href="restaurant_2.html" class="bento-card project-card">
+      <a href="restaurant_2.html" class="bento-card">
         <div class="card-icon"><i class="fa-solid fa-utensils"></i></div>
         <h3>Savoria Culinary</h3>
-        <p>Fine-dining digital menu with dynamic category filtering, table order construction, and booking modal.</p>
-        <span class="link-btn">Launch App <i class="fa-solid fa-arrow-right"></i></span>
+        <p>Fine-dining digital menu with dynamic category filtering and table ordering construction.</p>
+        <span class="subtitle">Launch App &rarr;</span>
       </a>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section class="section" id="contact">
+  <section id="contact" class="section">
     <div class="section-title">
       <h2>Get In Touch</h2>
-      <p>Send a message directly to start a conversation</p>
+      <p>Send a message directly to start a conversation.</p>
     </div>
 
-    <form class="contact-form" action="https://formspree.io/f/xbjnqpyz" method="POST" id="contactForm">
+    <form id="contactForm" action="https://formspree.io/f/xbjnpsyq" method="POST" class="contact-form">
       <div class="input-group">
         <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="email" name="_replyto" placeholder="Your Email" required>
       </div>
       <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
       <button type="submit" class="btn-primary">Send Message</button>
-      <p id="formStatus" class="form-status"></p>
+      <p id="formStatus"></p>
     </form>
   </section>
+
+  <!-- Footer -->
+  <footer class="app-header">
+    <p>&copy; 2026 DEVHONEY. All rights reserved.</p>
+    <div class="social-links footer-socials">
+      <a href="https://github.com/developerhoney" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://discord.com" target="_blank"><i class="fa-brands fa-discord"></i></a>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
