@@ -3,177 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PulseGym — Member Portal by DevHoney</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-    
-    :root {
-      --bg: #0a0c10;
-      --card-bg: #121620;
-      --volt: #10b981;
-      --volt-glow: rgba(16, 185, 129, 0.15);
-      --text: #f3f4f6;
-      --muted: #828b9e;
-      --border: #1e2638;
-    }
-
-    body { background-color: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; }
-
-    /* Custom Volt Cursor */
-    .cursor-dot {
-      width: 10px; height: 10px; background: var(--volt); border-radius: 50%;
-      position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
-      box-shadow: 0 0 12px var(--volt);
-    }
-    .cursor-glow {
-      width: 320px; height: 320px;
-      background: radial-gradient(circle, var(--volt-glow) 0%, rgba(0,0,0,0) 70%);
-      position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
-    }
-
-    .container { max-width: 1200px; margin: 0 auto; padding: 40px 6%; }
-    
-    .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-    .brand { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; }
-    .brand span { color: var(--volt); }
-
-    /* Day Selector Pills */
-    .day-pills { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 30px; }
-    .pill {
-      background: var(--card-bg); border: 1px solid var(--border); color: var(--muted);
-      padding: 12px 24px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; transition: all 0.25s;
-    }
-    .pill.active, .pill:hover { background: var(--volt); color: #000; border-color: var(--volt); box-shadow: 0 4px 15px var(--volt-glow); }
-
-    /* Grid Layout */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-    
-    .hud-card {
-      background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px;
-      padding: 28px; transition: border-color 0.3s; position: relative; overflow: hidden;
-    }
-    .hud-card:hover { border-color: var(--volt); }
-    .hud-card h3 { font-size: 1.2rem; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-
-    .counter-val { font-size: 2.8rem; font-weight: 800; color: var(--volt); margin: 10px 0; }
-    .btn-wrap { display: flex; gap: 10px; }
-    .btn-act {
-      background: var(--border); color: #fff; border: none; padding: 10px 20px;
-      border-radius: 6px; font-weight: 600; transition: background 0.2s;
-    }
-    .btn-act:hover { background: var(--volt); color: #000; }
-
-    /* BMI Box */
-    .bmi-input { width: 100%; padding: 12px; background: var(--bg); border: 1px solid var(--border); color: #fff; border-radius: 6px; margin-bottom: 10px; outline: none; }
-    .bmi-input:focus { border-color: var(--volt); }
-    .btn-calc { width: 100%; background: var(--volt); color: #000; border: none; padding: 12px; font-weight: 700; border-radius: 6px; }
-
-    /* Routine list */
-    .routine-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .routine-item { display: flex; justify-content: space-between; padding: 12px; background: var(--bg); border-radius: 6px; border: 1px solid var(--border); }
-  </style>
+  <title>PulseGym HUD | DEVHONEY</title>
+  <link rel="stylesheet" href="style_2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="app-body">
 
-  <div class="cursor-dot" id="dot"></div>
-  <div class="cursor-glow" id="glow"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
 
-  <div class="container">
-    <div class="header-bar">
-      <div class="brand">Pulse<span>Gym</span> HUD</div>
-      <span style="font-size:0.85rem; color:var(--volt); background:var(--volt-glow); padding:6px 14px; border-radius:20px; font-weight:700;">● DevHoney Engine</span>
+  <header class="app-header">
+    <div class="header-brand">
+      <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Portfolio</a>
+      <h1>PulseGym HUD</h1>
+    </div>
+    <span class="engine-tag">#DevHoneyEngine</span>
+  </header>
+
+  <main class="app-container">
+    <!-- Day Tabs -->
+    <div class="tab-bar">
+      <button class="tab-btn" data-day="mon">Mon — Chest & Triceps</button>
+      <button class="tab-btn active" data-day="tue">Tue — Back & Biceps</button>
+      <button class="tab-btn" data-day="wed">Wed — Legs & Core</button>
+      <button class="tab-btn" data-day="thu">Thu — Active Recovery</button>
     </div>
 
-    <div class="day-pills">
-      <button class="pill active" onclick="setDay('Mon', this)">Mon — Chest & Triceps</button>
-      <button class="pill" onclick="setDay('Tue', this)">Tue — Back & Biceps</button>
-      <button class="pill" onclick="setDay('Wed', this)">Wed — Legs & Core</button>
-      <button class="pill" onclick="setDay('Thu', this)">Thu — Active Recovery</button>
-    </div>
-
-    <div class="grid">
-      <div class="hud-card spotlight-card">
-        <h3>Workout Routine (<span id="dayTitle" style="color:var(--volt);">Mon</span>)</h3>
-        <div class="routine-list" id="routineList">
-          <div class="routine-item"><span>Incline Bench Press</span><strong style="color:var(--volt);">4 x 10</strong></div>
-          <div class="routine-item"><span>Dumbbell Flyes</span><strong style="color:var(--volt);">3 x 12</strong></div>
-          <div class="routine-item"><span>Cable Tricep Pushdown</span><strong style="color:var(--volt);">4 x 12</strong></div>
-        </div>
+    <!-- HUD Dashboard Cards -->
+    <div class="hud-grid">
+      <!-- Workout Split Card -->
+      <div class="bento-card hud-card">
+        <h3>Workout Routine (<span id="currentDay">Tue</span>)</h3>
+        <ul class="routine-list" id="routineList">
+          <li><span>Lat Pulldown</span> <strong>4 x 10</strong></li>
+          <li><span>Barbell Bent Rows</span> <strong>3 x 10</strong></li>
+          <li><span>Hammer Curls</span> <strong>4 x 12</strong></li>
+        </ul>
       </div>
 
-      <div class="hud-card spotlight-card">
+      <!-- Hydration Counter -->
+      <div class="bento-card hud-card">
         <h3>Daily Hydration Goal</h3>
-        <p style="color:var(--muted); font-size:0.88rem;">Track intake glasses in real-time:</p>
-        <div class="counter-val"><span id="waterNum">5</span> <span style="font-size:1rem; color:var(--muted); font-weight:400;">/ 10 Glasses</span></div>
-        <div class="btn-wrap">
-          <button class="btn-act" onclick="adjustWater(-1)">- Glass</button>
-          <button class="btn-act" onclick="adjustWater(1)">+ Glass</button>
+        <p class="subtext">Track intake glasses in real-time:</p>
+        <div class="counter-display">
+          <span id="waterCount">5</span> <small>/ 10 Glasses</small>
+        </div>
+        <div class="counter-controls">
+          <button class="counter-btn" id="removeGlass">- Glass</button>
+          <button class="counter-btn primary" id="addGlass">+ Glass</button>
         </div>
       </div>
 
-      <div class="hud-card spotlight-card">
+      <!-- Live BMI Calculator -->
+      <div class="bento-card hud-card">
         <h3>Live BMI Metrics</h3>
-        <input type="number" class="bmi-input" id="w" placeholder="Weight (kg) e.g. 72">
-        <input type="number" class="bmi-input" id="h" placeholder="Height (cm) e.g. 178">
-        <button class="btn-calc" onclick="calcBMI()">Calculate Metric</button>
-        <div id="bmiOut" style="margin-top:15px; font-weight:700; color:var(--volt);">Enter details above</div>
+        <div class="bmi-inputs">
+          <input type="number" id="bmiWeight" placeholder="Weight (kg) e.g. 72">
+          <input type="number" id="bmiHeight" placeholder="Height (cm) e.g. 175">
+          <button class="btn-primary full-width" id="calcBmiBtn">Calculate Metric</button>
+        </div>
+        <div class="bmi-result" id="bmiResult">Enter details above</div>
       </div>
     </div>
-  </div>
+  </main>
 
-  <script>
-    const dot = document.getElementById('dot'); const glow = document.getElementById('glow');
-    window.addEventListener('mousemove', (e) => {
-      dot.style.left = `${e.clientX}px`; dot.style.top = `${e.clientY}px`;
-      glow.style.left = `${e.clientX}px`; glow.style.top = `${e.clientY}px`;
-    });
-
-    document.querySelectorAll('.spotlight-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const x = e.clientX - r.left; const y = e.clientY - r.top;
-        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(16,185,129,0.08) 0%, rgba(18,22,32,1) 70%)`;
-      });
-      card.addEventListener('mouseleave', () => card.style.background = 'var(--card-bg)');
-    });
-
-    const data = {
-      Mon: [['Incline Bench Press', '4 x 10'], ['Dumbbell Flyes', '3 x 12'], ['Cable Tricep Pushdown', '4 x 12']],
-      Tue: [['Lat Pulldown', '4 x 10'], ['Barbell Bent Rows', '3 x 10'], ['Hammer Curls', '4 x 12']],
-      Wed: [['Barbell Squats', '4 x 8'], ['Romanian Deadlifts', '3 x 10'], ['Leg Extensions', '4 x 15']],
-      Thu: [['Light Yoga Stretch', '20 Mins'], ['Treadmill Incline Walk', '30 Mins']]
-    };
-
-    function setDay(day, btn) {
-      document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('dayTitle').textContent = day;
-      const list = document.getElementById('routineList');
-      list.innerHTML = data[day].map(i => `<div class="routine-item"><span>${i[0]}</span><strong style="color:var(--volt);">${i[1]}</strong></div>`).join('');
-    }
-
-    let water = 5;
-    function adjustWater(v) {
-      water = Math.max(0, water + v);
-      document.getElementById('waterNum').textContent = water;
-    }
-
-    function calcBMI() {
-      const weight = parseFloat(document.getElementById('w').value);
-      const height = parseFloat(document.getElementById('h').value) / 100;
-      const out = document.getElementById('bmiOut');
-      if(weight > 0 && height > 0) {
-        const score = (weight / (height * height)).toFixed(1);
-        let tag = 'Balanced Normal';
-        if(score > 25) tag = 'Overweight';
-        if(score < 18.5) tag = 'Underweight';
-        out.textContent = `Score: ${score} (${tag})`;
-      } else out.textContent = 'Please enter valid inputs.';
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
