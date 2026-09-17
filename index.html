@@ -12,9 +12,6 @@
 </head>
 <body>
 
-  <!-- 3D Canvas Layer -->
-  <canvas id="bg-3d"></canvas>
-
   <!-- Custom Cursor -->
   <div class="cursor-dot"></div>
   <div class="cursor-glow"></div>
@@ -30,25 +27,32 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero Section with Side-by-Side 3D Animation -->
   <section class="hero" id="about">
-    <span class="badge">Full-Stack & AI Developer</span>
-    <h1>Crafting High-Performance Digital Experiences.</h1>
-    <p>Specializing in AI-powered tools, interactive web applications, modular UI systems, and Discord bot architectures.</p>
-    
-    <div class="hero-actions">
-      <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    <div class="hero-content">
+      <span class="badge">Full-Stack & AI Developer</span>
+      <h1>Crafting High-Performance Digital Experiences.</h1>
+      <p>Specializing in AI-powered tools, interactive web applications, modular UI systems, and Discord bot architectures.</p>
+      
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+
+      <!-- Social Links -->
+      <div class="social-links">
+        <a href="https://github.com/developerhoney" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/developer-honey-6b2049428/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://youtube.com/@spyriftgaming?si=Vj94BRmiNq6WrWHP" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://discord.com/invite/HgnNNXnQ6s" target="_blank" title="Discord Server"><i class="fa-brands fa-discord"></i></a>
+        <a href="https://www.instagram.com/spyrift" target="_blank" title="Instagram (@spyrift)"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.instagram.com/h_neey_?stkn=ZDNlZDc0MzIxNw==" target="_blank" title="Instagram (@h_neey_)"><i class="fa-regular fa-user"></i></a>
+      </div>
     </div>
 
-    <!-- Social Links -->
-    <div class="social-links">
-      <a href="https://github.com/developerhoney" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/developer-honey-6b2049428/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="https://youtube.com/@spyriftgaming?si=Vj94BRmiNq6WrWHP" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-      <a href="https://discord.com/invite/HgnNNXnQ6s" target="_blank" title="Discord Server"><i class="fa-brands fa-discord"></i></a>
-      <a href="https://www.instagram.com/spyrift" target="_blank" title="Instagram (@spyrift)"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://www.instagram.com/h_neey_?stkn=ZDNlZDc0MzIxNw==" target="_blank" title="Instagram (@h_neey_)"><i class="fa-regular fa-user"></i></a>
+    <!-- Right Side 3D Canvas Box -->
+    <div class="hero-3d-wrapper">
+      <canvas id="bg-3d"></canvas>
     </div>
   </section>
 
