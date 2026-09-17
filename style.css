@@ -160,7 +160,7 @@ body {
   font-weight: 600;
 }
 
-/* 3D Canvas Container Next to Text */
+/* 3D Canvas Box Next to Text */
 .hero-3d-wrapper {
   flex: 1;
   height: 480px;
