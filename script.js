@@ -1,107 +1,117 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mouse Follower Effect
-  const dot = document.querySelector('.cursor-dot');
-  const glow = document.querySelector('.cursor-glow');
+// --- 1. Custom Cursor Follower ---
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorGlow = document.querySelector('.cursor-glow');
 
-  if (dot && glow) {
-    window.addEventListener('mousemove', (e) => {
-      dot.style.left = `${e.clientX}px`;
-      dot.style.top = `${e.clientY}px`;
-      
-      glow.style.left = `${e.clientX}px`;
-      glow.style.top = `${e.clientY}px`;
-    });
+window.addEventListener('mousemove', (e) => {
+  const { clientX, clientY } = e;
+  if (cursorDot) {
+    cursorDot.style.left = `${clientX}px`;
+    cursorDot.style.top = `${clientY}px`;
+  }
+  if (cursorGlow) {
+    cursorGlow.style.left = `${clientX}px`;
+    cursorGlow.style.top = `${clientY}px`;
+  }
+});
+
+// --- 2. 3D Interactive Canvas Background (Three.js) ---
+const canvas = document.querySelector('#bg-3d');
+if (canvas && typeof THREE !== 'undefined') {
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // 3D Geometry: Glowing Wireframe Torus Knot
+  const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+  const material = new THREE.MeshBasicMaterial({
+    color: 0xa855f7,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.15
+  });
+  const torusKnot = new THREE.Mesh(geometry, material);
+  scene.add(torusKnot);
+
+  // 3D Particles Field
+  const particlesCount = 400;
+  const positions = new Float32Array(particlesCount * 3);
+
+  for (let i = 0; i < particlesCount * 3; i++) {
+    positions[i] = (Math.random() - 0.5) * 100;
   }
 
-  // 2. Hydration Counter Logic (PulseGym)
-  const waterDisplay = document.getElementById('waterCount');
-  const addBtn = document.getElementById('addGlass');
-  const removeBtn = document.getElementById('removeGlass');
+  const particlesGeometry = new THREE.BufferGeometry();
+  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-  if (waterDisplay && addBtn && removeBtn) {
-    let count = parseInt(waterDisplay.innerText) || 0;
+  const particlesMaterial = new THREE.PointsMaterial({
+    size: 0.4,
+    color: 0xff2a5f,
+    transparent: true,
+    opacity: 0.5
+  });
 
-    addBtn.addEventListener('click', () => {
-      count++;
-      waterDisplay.innerText = count;
-    });
+  const particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
+  scene.add(particleSystem);
 
-    removeBtn.addEventListener('click', () => {
-      if (count > 0) {
-        count--;
-        waterDisplay.innerText = count;
-      }
-    });
+  camera.position.z = 30;
+
+  // Mouse interaction for 3D elements
+  let mouseX = 0;
+  let mouseY = 0;
+
+  window.addEventListener('mousemove', (event) => {
+    mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  // Animation Loop
+  function animate() {
+    requestAnimationFrame(animate);
+
+    torusKnot.rotation.x += 0.003;
+    torusKnot.rotation.y += 0.005;
+
+    particleSystem.rotation.y += 0.001;
+
+    // Smooth response to mouse movement
+    torusKnot.rotation.x += mouseY * 0.01;
+    torusKnot.rotation.y += mouseX * 0.01;
+
+    renderer.render(scene, camera);
   }
 
-  // 3. BMI Calculation Logic (PulseGym)
-  const calcBtn = document.getElementById('calcBmiBtn');
-  const weightInput = document.getElementById('bmiWeight');
-  const heightInput = document.getElementById('bmiHeight');
-  const bmiResult = document.getElementById('bmiResult');
+  animate();
 
-  if (calcBtn && weightInput && heightInput && bmiResult) {
-    calcBtn.addEventListener('click', () => {
-      const w = parseFloat(weightInput.value);
-      const h = parseFloat(heightInput.value) / 100;
+  // Resize handler
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+}
 
-      if (w > 0 && h > 0) {
-        const bmi = (w / (h * h)).toFixed(1);
-        let status = '';
+// --- 3. 3D Card Hover Tilt Effect ---
+const cards = document.querySelectorAll('.tilt-card');
 
-        if (bmi < 18.5) status = 'Underweight';
-        else if (bmi < 24.9) status = 'Normal weight';
-        else if (bmi < 29.9) status = 'Overweight';
-        else status = 'Obese';
+cards.forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-        bmiResult.innerHTML = `<strong>BMI: ${bmi}</strong> (${status})`;
-      } else {
-        bmiResult.innerText = 'Please enter valid height and weight.';
-      }
-    });
-  }
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
 
-  // 4. Workout Tab Switcher (PulseGym)
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const currentDayLabel = document.getElementById('currentDay');
-  const routineList = document.getElementById('routineList');
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
 
-  const routines = {
-    mon: [
-      { name: 'Bench Press', reps: '4 x 8' },
-      { name: 'Incline Dumbbell Press', reps: '3 x 10' },
-      { name: 'Tricep Pushdowns', reps: '4 x 12' }
-    ],
-    tue: [
-      { name: 'Lat Pulldown', reps: '4 x 10' },
-      { name: 'Barbell Bent Rows', reps: '3 x 10' },
-      { name: 'Hammer Curls', reps: '4 x 12' }
-    ],
-    wed: [
-      { name: 'Barbell Squats', reps: '4 x 8' },
-      { name: 'Romanian Deadlifts', reps: '3 x 10' },
-      { name: 'Hanging Leg Raises', reps: '3 x 15' }
-    ],
-    thu: [
-      { name: 'Incline Treadmill Walk', reps: '30 mins' },
-      { name: 'Foam Rolling & Mobility', reps: '15 mins' }
-    ]
-  };
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+  });
 
-  if (tabBtns.length && routineList) {
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const dayKey = btn.getAttribute('data-day');
-        if (currentDayLabel) currentDayLabel.innerText = dayKey.toUpperCase();
-
-        const selectedRoutine = routines[dayKey] || [];
-        routineList.innerHTML = selectedRoutine.map(item => 
-          `<li><span>${item.name}</span> <strong>${item.reps}</strong></li>`
-        ).join('');
-      });
-    });
-  }
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+  });
 });
