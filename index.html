@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEVHONEY — Creative Developer Portfolio</title>
+    
+    <!-- Favicon Link -->
+    <link rel="icon" type="image/png" href="favicon_2.png">
+
     <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_2.css">
+    
     <!-- GSAP Animation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -24,7 +29,7 @@
         <div class="status-badge">
             <span class="pulse-dot"></span> Available for Projects
         </div>
-        <a href="#socials" class="nav-btn">Connect With Me →</a>
+        <a href="#contact" class="nav-btn">Connect With Me →</a>
     </header>
 
     <main>
@@ -47,15 +52,15 @@
         <section class="bento-container" id="work">
             <div class="bento-grid">
                 
-                <!-- Bento 1: Featured Work -->
-                <div class="bento-card col-span-2 row-span-2 featured-card">
-                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80');"></div>
+                <!-- Bento 1: Featured Work (Gym HUD) -->
+                <a href="gym_2.html" class="bento-card col-span-2 row-span-2 featured-card" style="text-decoration:none; color:inherit;">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1000&q=80');"></div>
                     <div class="card-content">
-                        <span class="card-category">Case Study</span>
-                        <h3>Neural Art Synthesizer</h3>
-                        <p>Generative visual platform powered by WebGL & WebGPU canvas rendering.</p>
+                        <span class="card-category">Web App Showcase</span>
+                        <h3>PulseGym HUD Interface</h3>
+                        <p>Interactive fitness tracking dashboard with live BMI calculator & workout planner.</p>
                     </div>
-                </div>
+                </a>
 
                 <!-- Bento 2: Stats -->
                 <div class="bento-card stat-card">
@@ -79,44 +84,57 @@
                     </div>
                 </div>
 
-                <!-- Bento 4: Secondary Project -->
-                <div class="bento-card col-span-2 project-mini">
-                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1000&q=80');"></div>
+                <!-- Bento 4: Secondary Project (E-Commerce) -->
+                <a href="ecommerce_2.html" class="bento-card project-mini" style="text-decoration:none; color:inherit;">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80');"></div>
                     <div class="card-content">
                         <span class="card-category">E-Commerce</span>
-                        <h3>HyperDrive Studio</h3>
-                        <p>Interactive 3D configurator built for modern automotive accessories.</p>
+                        <h3>AURA — Minimal Goods</h3>
+                        <p>Curated luxury minimalist store interface.</p>
                     </div>
-                </div>
+                </a>
 
-                <!-- Bento 5: SOCIAL LINKS CARD -->
-                <div class="bento-card social-bento" id="socials">
+                <!-- Bento 5: Project (Restaurant) -->
+                <a href="restaurant_2.html" class="bento-card project-mini" style="text-decoration:none; color:inherit;">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80');"></div>
+                    <div class="card-content">
+                        <span class="card-category">Hospitality</span>
+                        <h3>Savoria Culinary Experience</h3>
+                        <p>Artisanal dining table booking & menu platform.</p>
+                    </div>
+                </a>
+
+                <!-- Bento 6: SOCIAL LINKS CARD -->
+                <div class="bento-card social-bento col-span-2" id="socials">
                     <div class="card-content">
                         <h3>Connect Everywhere</h3>
                         <p class="social-sub">Follow & Reach out across platforms</p>
                         <div class="social-grid">
-                            <a href="https://github.com/developerhoney" target="_blank" class="social-btn github">
-                                <i class="fa-brands fa-github"></i> GitHub
-                            </a>
-                            <a href="https://www.linkedin.com/in/developer-honey-6b2049428/" target="_blank" class="social-btn linkedin">
-                                <i class="fa-brands fa-linkedin"></i> LinkedIn
-                            </a>
-                            <a href="https://www.instagram.com/h_neey_?stkn=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram">
-                                <i class="fa-brands fa-instagram"></i> @h_neey_
-                            </a>
-                            <a href="https://www.instagram.com/spyrift?stkn=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram-alt">
-                                <i class="fa-brands fa-instagram"></i> @spyrift
-                            </a>
-                            <a href="https://discord.gg/HgnNNXnQ6s" target="_blank" class="social-btn discord">
-                                <i class="fa-brands fa-discord"></i> Discord
-                            </a>
-                            <a href="https://youtube.com/@spyriftgaming?si=EXhmtU5_-qIpFmR0" target="_blank" class="social-btn youtube">
-                                <i class="fa-brands fa-youtube"></i> YouTube
-                            </a>
+                            <a href="https://github.com/developerhoney" target="_blank" class="social-btn github"><i class="fa-brands fa-github"></i> GitHub</a>
+                            <a href="https://www.linkedin.com/in/developer-honey-6b2049428/" target="_blank" class="social-btn linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                            <a href="https://www.instagram.com/h_neey_?stkn=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram"><i class="fa-brands fa-instagram"></i> @h_neey_</a>
+                            <a href="https://www.instagram.com/spyrift?stkn=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram-alt"><i class="fa-brands fa-instagram"></i> @spyrift</a>
+                            <a href="https://discord.gg/HgnNNXnQ6s" target="_blank" class="social-btn discord"><i class="fa-brands fa-discord"></i> Discord</a>
+                            <a href="https://youtube.com/@spyriftgaming?si=EXhmtU5_-qIpFmR0" target="_blank" class="social-btn youtube"><i class="fa-brands fa-youtube"></i> YouTube</a>
                         </div>
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- FORMSPREE CONTACT FORM SECTION -->
+        <section class="bento-container" id="contact" style="padding-top:0;">
+            <div class="bento-card" style="max-width: 600px; margin: 0 auto; padding: 2.5rem;">
+                <h3 style="font-family: var(--font-heading); margin-bottom: 0.5rem; font-size: 1.8rem;">Send a Message</h3>
+                <p style="color: var(--text-body); margin-bottom: 1.5rem; font-size: 0.9rem;">Have a project in mind? Drop a line directly below.</p>
+                
+                <form action="https://formspree.io/f/xyknqypt" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <input type="text" name="name" placeholder="Your Name" required style="padding: 12px 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glow); border-radius: 8px; color: #fff; outline: none;">
+                    <input type="email" name="email" placeholder="Your Email" required style="padding: 12px 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glow); border-radius: 8px; color: #fff; outline: none;">
+                    <textarea name="message" rows="4" placeholder="Your Message" required style="padding: 12px 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glow); border-radius: 8px; color: #fff; outline: none; resize: none;"></textarea>
+                    <button type="submit" class="nav-btn" style="border: none; cursor: pointer; text-align: center; margin-top: 0.5rem;">Send Message →</button>
+                </form>
             </div>
         </section>
     </main>
@@ -139,6 +157,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script_2.js"></script>
 </body>
 </html>
