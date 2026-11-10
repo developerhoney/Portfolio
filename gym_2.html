@@ -10,15 +10,12 @@
       document.documentElement.setAttribute('data-theme', t || (d ? 'dark' : 'light'));
     })();
   </script>
-  <title> Gym HUD | DEVHONEY</title>
+  <title>PulseGym HUD | DEVHONEY</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body class="app-body">
-
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
 
   <header class="app-header">
     <div class="header-brand">
@@ -43,9 +40,10 @@
       <div class="bento-card hud-card">
         <h3>Workout Routine (<span id="currentDay">Tue</span>)</h3>
         <ul class="routine-list" id="routineList">
-          <li><span>Lat Pulldown</span> <strong>4 x 10</strong></li>
-          <li><span>Barbell Bent Rows</span> <strong>3 x 10</strong></li>
-          <li><span>Hammer Curls</span> <strong>4 x 12</strong></li>
+          <li><span>Lat Pulldown</span> <strong>4 × 10</strong></li>
+          <li><span>Barbell Bent Rows</span> <strong>3 × 10</strong></li>
+          <li><span>Hammer Curls</span> <strong>4 × 12</strong></li>
+          <li><span>Face Pulls</span> <strong>3 × 15</strong></li>
         </ul>
       </div>
 
@@ -57,7 +55,7 @@
           <span id="waterCount">5</span> <small>/ 10 Glasses</small>
         </div>
         <div class="counter-controls">
-          <button class="counter-btn" id="removeGlass">- Glass</button>
+          <button class="counter-btn" id="removeGlass">− Glass</button>
           <button class="counter-btn primary" id="addGlass">+ Glass</button>
         </div>
       </div>
