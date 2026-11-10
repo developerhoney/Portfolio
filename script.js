@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Theme toggle on app pages too
   const appHeader = document.querySelector('.app-header');
   if (appHeader && !document.querySelector('.theme-toggle')) {
     appHeader.appendChild(createThemeToggle());
@@ -58,11 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.addEventListener('click', () => {
       navLinks.classList.toggle('open');
     });
-
     navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-      });
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
   }
 });
@@ -75,7 +71,6 @@ if (contactForm) {
   contactForm.addEventListener('submit', async function (e) {
     e.preventDefault();
     const data = new FormData(contactForm);
-
     formStatus.textContent = 'Sending message...';
     formStatus.style.color = 'var(--accent)';
 
@@ -138,11 +133,9 @@ if (tabBtns.length && routineList) {
     btn.addEventListener('click', () => {
       tabBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
       const day = btn.dataset.day;
       const dayName = btn.textContent.split('—')[0].trim();
       if (currentDayEl) currentDayEl.textContent = dayName;
-
       const items = routines[day] || [];
       routineList.innerHTML = items
         .map(([name, sets]) => `<li><span>${name}</span> <strong>${sets}</strong></li>`)
@@ -177,7 +170,7 @@ if (waterCountEl && addGlassBtn && removeGlassBtn) {
   });
 }
 
-// BMI Calculator
+// BMI Calculator (FIXED)
 const bmiWeight = document.getElementById('bmiWeight');
 const bmiHeight = document.getElementById('bmiHeight');
 const calcBmiBtn = document.getElementById('calcBmiBtn');
@@ -188,7 +181,7 @@ if (calcBmiBtn && bmiResult) {
     const w = parseFloat(bmiWeight.value);
     const h = parseFloat(bmiHeight.value) / 100;
 
-    if (!w || !h) {
+    if (!w || !h || w <= 0 || h <= 0) {
       bmiResult.textContent = 'Enter a valid weight and height.';
       bmiResult.classList.add('show');
       return;
@@ -196,4 +189,43 @@ if (calcBmiBtn && bmiResult) {
 
     const bmi = (w / (h * h)).toFixed(1);
     let category = 'Normal range';
-    if (bmi < 18.5) 
+    if (bmi < 18.5) category = 'Underweight';
+    else if (bmi >= 25 && bmi < 30) category = 'Overweight';
+    else if (bmi >= 30) category = 'Obese';
+
+    bmiResult.textContent = `BMI: ${bmi} — ${category}`;
+    bmiResult.classList.add('show');
+  });
+}
+
+/* ========== ECOMMERCE CART (AURA) ========== */
+const cartCountEl = document.getElementById('cartCount');
+const cartTotalEl = document.getElementById('cartTotal');
+const addToCartBtns = document.querySelectorAll('.add-to-cart');
+
+if (cartCountEl && cartTotalEl && addToCartBtns.length) {
+  let cartCount = 0;
+  let cartTotal = 0;
+
+  addToCartBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const price = parseFloat(btn.dataset.price) || 0;
+      cartCount += 1;
+      cartTotal += price;
+
+      cartCountEl.textContent = cartCount;
+      cartTotalEl.textContent = cartTotal.toFixed(2);
+
+      // visual feedback
+      const status = document.querySelector('.cart-status');
+      if (status) {
+        status.classList.remove('bump');
+        void status.offsetWidth;
+        status.classList.add('bump');
+      }
+
+      btn.textContent = 'Added ✓';
+      setTimeout(() => { btn.textContent = 'Add to Cart'; }, 900);
+    });
+  });
+}
