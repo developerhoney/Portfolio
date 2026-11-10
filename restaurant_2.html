@@ -11,9 +11,106 @@
     })();
   </script>
   <title>Savoria Culinary | DEVHONEY</title>
+  <link rel="icon" type="image/png" href="favicon_2.png">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Savoria-only styles (uses theme variables from style.css) ===== */
+    .chip-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem; }
+    .chip {
+      padding: 0.55rem 1.1rem; border-radius: 20px; border: 1px solid var(--border-color);
+      background: var(--surface); color: var(--ink-muted); font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; transition: all 0.25s var(--ease);
+    }
+    .chip:hover { border-color: var(--accent); color: var(--accent-dark); }
+    .chip.active { background: var(--accent-gradient); border-color: transparent; color: #fffaf5; }
+    .chip:focus-visible, .qty-btn:focus-visible, .modal-close:focus-visible,
+    .modal input:focus-visible, .modal select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .savoria-layout { display: grid; grid-template-columns: 1fr 320px; gap: 1.5rem; align-items: start; }
+    .savoria-layout .hud-grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+
+    .menu-card .price-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: 0.3rem; }
+    .add-btn {
+      padding: 0.4rem 0.9rem; border-radius: 8px; border: 1px solid var(--border-strong);
+      background: transparent; color: var(--ink); font-weight: 600; font-size: 0.85rem; cursor: pointer;
+      transition: all 0.25s var(--ease);
+    }
+    .add-btn:hover { border-color: var(--accent); color: var(--accent-dark); }
+    .add-btn.added { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); }
+    .no-items { color: var(--ink-muted); }
+
+    .order-panel { position: sticky; top: 5.5rem; }
+    .order-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .order-empty { color: var(--ink-muted); font-size: 0.9rem; }
+    .order-item { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; font-size: 0.9rem; }
+    .order-item .name { flex: 1; }
+    .qty { display: flex; align-items: center; gap: 0.4rem; }
+    .qty-btn {
+      width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--border-strong);
+      background: var(--surface); color: var(--ink); cursor: pointer; line-height: 1;
+    }
+    .qty-btn:hover { border-color: var(--accent); }
+    .order-total {
+      display: flex; justify-content: space-between; padding-top: 0.8rem; margin-top: 0.4rem;
+      border-top: 1px solid var(--border-color); font-weight: 600;
+    }
+    .order-total strong { color: var(--accent-dark); }
+    .order-panel .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .link-btn {
+      background: none; border: none; color: var(--ink-muted); cursor: pointer; font-size: 0.85rem;
+      text-decoration: underline; align-self: center;
+    }
+    .link-btn:hover { color: var(--accent-dark); }
+
+    /* Booking modal */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center;
+      padding: 1rem; background: rgba(20, 16, 10, 0.6); backdrop-filter: blur(4px);
+      animation: fade-in 0.2s ease;
+    }
+    .modal-backdrop[hidden], .booking-done[hidden], #bookingFormView[hidden] { display: none; }
+    .modal {
+      position: relative; width: 100%; max-width: 460px; max-height: 92vh; overflow-y: auto;
+      background: var(--surface); border: 1px solid var(--border-strong); border-radius: 16px; padding: 1.8rem;
+      animation: pop-in 0.3s var(--ease);
+    }
+    .modal h2 { font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 0.3rem; }
+    .modal .subtext { margin: 0 0 1.2rem; }
+    .modal-close {
+      position: absolute; top: 0.8rem; right: 0.8rem; width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid var(--border-color); background: var(--tag-bg); color: var(--ink);
+      font-size: 1.2rem; cursor: pointer;
+    }
+    .modal-close:hover { border-color: var(--accent); }
+    .booking-form { display: flex; flex-direction: column; gap: 0.9rem; }
+    .field { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.85rem; font-weight: 600; color: var(--ink-muted); }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .modal input, .modal select {
+      width: 100%; background: var(--bg); border: 1px solid var(--border-color); border-radius: 10px;
+      padding: 0.7rem 0.9rem; color: var(--ink); font-weight: 400;
+    }
+    .modal input:focus, .modal select:focus { border-color: var(--accent); }
+    .booking-note { font-size: 0.85rem; color: var(--ink-muted); background: var(--accent-soft); border-radius: 8px; padding: 0.6rem 0.8rem; }
+    .booking-done { text-align: center; padding: 0.5rem 0; }
+    .booking-done .check {
+      width: 56px; height: 56px; margin: 0 auto 1rem; border-radius: 50%;
+      background: var(--accent-soft); color: var(--accent-dark); font-size: 1.5rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .booking-done p { color: var(--ink-muted); margin-bottom: 1.2rem; }
+    .booking-done .btn-primary { width: 100%; }
+
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pop-in { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+
+    @media (max-width: 860px) {
+      .savoria-layout { grid-template-columns: 1fr; }
+      .order-panel { position: static; }
+    }
+  </style>
 </head>
 <body class="app-body">
 
@@ -26,30 +123,217 @@
   </header>
 
   <main class="app-container">
-    <div class="hud-grid">
-      <div class="bento-card menu-card">
-        <div class="card-icon"><i class="fa-solid fa-bowl-food"></i></div>
-        <h3>Truffle Mushroom Risotto</h3>
-        <p>Arborio rice, fresh black truffle emulsion, shaved parmesan.</p>
-        <span class="subtitle">$28.00</span>
-      </div>
+    <div class="chip-bar" id="filterBar" role="group" aria-label="Menu categories">
+      <button type="button" class="chip active" data-cat="all">All</button>
+      <button type="button" class="chip" data-cat="starters">Starters</button>
+      <button type="button" class="chip" data-cat="mains">Mains</button>
+      <button type="button" class="chip" data-cat="drinks">Drinks</button>
+      <button type="button" class="chip" data-cat="desserts">Desserts</button>
+    </div>
 
-      <div class="bento-card menu-card">
-        <div class="card-icon"><i class="fa-solid fa-drumstick-bite"></i></div>
-        <h3>Pan-Seared Duck Breast</h3>
-        <p>Served with spiced cherry reduction and parsnip purée.</p>
-        <span class="subtitle">$34.00</span>
-      </div>
+    <div class="savoria-layout">
+      <div class="hud-grid" id="menuGrid"></div>
 
-      <div class="bento-card menu-card">
-        <div class="card-icon"><i class="fa-solid fa-wine-glass"></i></div>
-        <h3>Vintage Pinot Noir</h3>
-        <p>2018 Reserve, rich notes of dark berries and subtle oak.</p>
-        <span class="subtitle">$18.00 / glass</span>
-      </div>
+      <aside class="bento-card order-panel" aria-label="Your order">
+        <h3>Your order</h3>
+        <ul class="order-list" id="orderList"></ul>
+        <div class="order-total"><span>Subtotal</span><strong id="orderTotal">$0.00</strong></div>
+        <button type="button" class="btn-primary full-width" id="openBooking">Reserve a table</button>
+        <button type="button" class="link-btn" id="clearOrder">Clear order</button>
+      </aside>
     </div>
   </main>
 
+  <!-- Booking modal -->
+  <div class="modal-backdrop" id="bookingModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button type="button" class="modal-close" id="closeBooking" aria-label="Close">&times;</button>
+
+      <div id="bookingFormView">
+        <h2 id="modalTitle">Reserve a table</h2>
+        <p class="subtext">Tell us when you'd like to dine. We'll confirm by email.</p>
+        <form class="booking-form" id="bookingForm">
+          <label class="field">Full name
+            <input type="text" name="name" id="bkName" autocomplete="name" required>
+          </label>
+          <label class="field">Email
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <div class="field-row">
+            <label class="field">Date
+              <input type="date" name="date" id="bkDate" required>
+            </label>
+            <label class="field">Time
+              <select name="time" id="bkTime" required></select>
+            </label>
+          </div>
+          <label class="field">Guests
+            <select name="guests" id="bkGuests" required></select>
+          </label>
+          <p class="booking-note" id="bkOrderNote" hidden></p>
+          <button type="submit" class="btn-primary">Confirm reservation</button>
+        </form>
+      </div>
+
+      <div class="booking-done" id="bookingDone" hidden>
+        <div class="check"><i class="fa-solid fa-check"></i></div>
+        <h2>Table reserved</h2>
+        <p id="doneText"></p>
+        <button type="button" class="btn-primary" id="doneClose">Back to menu</button>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+  <script>
+    (function () {
+      var MENU = [
+        { id: 1, cat: 'starters', icon: 'fa-leaf', name: 'Burrata & Heirloom Tomato', desc: 'Fresh burrata, basil oil, aged balsamic.', price: 16 },
+        { id: 2, cat: 'starters', icon: 'fa-fish', name: 'Seared Scallops', desc: 'Cauliflower purée, brown butter, capers.', price: 22 },
+        { id: 3, cat: 'mains', icon: 'fa-bowl-food', name: 'Truffle Mushroom Risotto', desc: 'Arborio rice, fresh black truffle emulsion, shaved parmesan.', price: 28 },
+        { id: 4, cat: 'mains', icon: 'fa-drumstick-bite', name: 'Pan-Seared Duck Breast', desc: 'Served with spiced cherry reduction and parsnip purée.', price: 34 },
+        { id: 5, cat: 'mains', icon: 'fa-utensils', name: 'Herb-Crusted Lamb Rack', desc: 'Rosemary jus, roasted garlic, charred greens.', price: 42 },
+        { id: 6, cat: 'drinks', icon: 'fa-wine-glass', name: 'Vintage Pinot Noir', desc: '2018 Reserve, rich notes of dark berries and subtle oak. Per glass.', price: 18 },
+        { id: 7, cat: 'drinks', icon: 'fa-martini-glass-citrus', name: 'Elderflower Spritz', desc: 'Sparkling wine, elderflower, fresh lemon.', price: 12 },
+        { id: 8, cat: 'desserts', icon: 'fa-cookie-bite', name: 'Dark Chocolate Fondant', desc: 'Warm centre, salted caramel, vanilla cream.', price: 14 },
+        { id: 9, cat: 'desserts', icon: 'fa-ice-cream', name: 'Vanilla Panna Cotta', desc: 'Roasted berries and crushed pistachio.', price: 12 }
+      ];
+
+      var order = {};          // id -> quantity
+      var activeCat = 'all';
+      var lastFocus = null;
+
+      var $ = function (id) { return document.getElementById(id); };
+      var menuGrid = $('menuGrid'), orderList = $('orderList'), orderTotal = $('orderTotal');
+      var openBtn = $('openBooking'), clearBtn = $('clearOrder');
+      var modal = $('bookingModal'), formView = $('bookingFormView'), doneView = $('bookingDone');
+      var money = function (n) { return '$' + n.toFixed(2); };
+      var byId = function (id) { return MENU.filter(function (m) { return m.id === id; })[0]; };
+
+      /* ----- Menu + filters ----- */
+      function renderMenu() {
+        var items = MENU.filter(function (m) { return activeCat === 'all' || m.cat === activeCat; });
+        menuGrid.innerHTML = items.length ? items.map(function (m) {
+          var inOrder = order[m.id] || 0;
+          return '<div class="bento-card menu-card">' +
+            '<div class="card-icon"><i class="fa-solid ' + m.icon + '"></i></div>' +
+            '<h3>' + m.name + '</h3><p>' + m.desc + '</p>' +
+            '<div class="price-row"><span class="subtitle">' + money(m.price) + '</span>' +
+            '<button type="button" class="add-btn' + (inOrder ? ' added' : '') + '" data-add="' + m.id + '">' +
+            (inOrder ? 'Added (' + inOrder + ')' : 'Add to order') + '</button></div></div>';
+        }).join('') : '<p class="no-items">No dishes in this category yet.</p>';
+      }
+
+      $('filterBar').addEventListener('click', function (e) {
+        var chip = e.target.closest('.chip');
+        if (!chip) return;
+        activeCat = chip.dataset.cat;
+        document.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('active', c === chip); });
+        renderMenu();
+      });
+
+      menuGrid.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-add]');
+        if (!btn) return;
+        var id = Number(btn.dataset.add);
+        order[id] = (order[id] || 0) + 1;
+        renderMenu();
+        renderOrder();
+      });
+
+      /* ----- Order builder ----- */
+      function renderOrder() {
+        var ids = Object.keys(order);
+        var total = 0;
+        orderList.innerHTML = ids.length ? ids.map(function (id) {
+          var m = byId(Number(id)), q = order[id];
+          total += m.price * q;
+          return '<li class="order-item"><span class="name">' + m.name + '</span>' +
+            '<span class="qty"><button type="button" class="qty-btn" data-dec="' + id + '" aria-label="Remove one ' + m.name + '">−</button>' +
+            '<span>' + q + '</span>' +
+            '<button type="button" class="qty-btn" data-inc="' + id + '" aria-label="Add one ' + m.name + '">+</button></span>' +
+            '<strong>' + money(m.price * q) + '</strong></li>';
+        }).join('') : '<li class="order-empty">Nothing yet. Add dishes from the menu.</li>';
+        orderTotal.textContent = money(total);
+        clearBtn.hidden = !ids.length;
+      }
+
+      orderList.addEventListener('click', function (e) {
+        var inc = e.target.closest('[data-inc]'), dec = e.target.closest('[data-dec]');
+        if (inc) order[inc.dataset.inc] += 1;
+        if (dec) {
+          order[dec.dataset.dec] -= 1;
+          if (order[dec.dataset.dec] <= 0) delete order[dec.dataset.dec];
+        }
+        if (inc || dec) { renderOrder(); renderMenu(); }
+      });
+
+      clearBtn.addEventListener('click', function () { order = {}; renderOrder(); renderMenu(); });
+
+      /* ----- Booking modal ----- */
+      function fillFormOptions() {
+        var times = '';
+        for (var h = 12; h <= 21; h++) {
+          ['00', '30'].forEach(function (m) {
+            var label = (h > 12 ? h - 12 : h) + ':' + m + (h >= 12 ? ' PM' : ' AM');
+            times += '<option value="' + h + ':' + m + '">' + label + '</option>';
+          });
+        }
+        $('bkTime').innerHTML = times;
+        var guests = '';
+        for (var g = 1; g <= 8; g++) guests += '<option value="' + g + '">' + g + (g === 1 ? ' guest' : ' guests') + '</option>';
+        $('bkGuests').innerHTML = guests;
+        $('bkGuests').value = '2';
+        $('bkDate').min = new Date().toLocaleDateString('en-CA');
+      }
+
+      function openModal() {
+        lastFocus = document.activeElement;
+        var note = $('bkOrderNote');
+        var count = Object.keys(order).reduce(function (s, id) { return s + order[id]; }, 0);
+        note.hidden = !count;
+        if (count) note.textContent = 'Your pre-order of ' + count + (count === 1 ? ' item' : ' items') + ' (' + orderTotal.textContent + ') will be sent with this reservation.';
+        formView.hidden = false;
+        doneView.hidden = true;
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        $('bkName').focus();
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      }
+
+      openBtn.addEventListener('click', openModal);
+      $('closeBooking').addEventListener('click', closeModal);
+      $('doneClose').addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+      $('bookingForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var f = e.target;
+        var date = new Date(f.date.value + 'T00:00').toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+        var time = f.time.options[f.time.selectedIndex].text;
+        var n = f.guests.value;
+        $('doneText').textContent = f.name.value + ', your table for ' + n + (n === '1' ? ' guest' : ' guests') +
+          ' is booked for ' + date + ' at ' + time + '. A confirmation will be sent to ' + f.email.value + '.';
+        formView.hidden = true;
+        doneView.hidden = false;
+        f.reset();
+        $('bkGuests').value = '2';
+        order = {};
+        renderOrder();
+        renderMenu();
+        $('doneClose').focus();
+      });
+
+      fillFormOptions();
+      renderMenu();
+      renderOrder();
+    })();
+  </script>
 </body>
 </html>
